@@ -1,0 +1,44 @@
+# Scoring matrix for property evaluation.
+# Score measures "how much of what I want does this house have?"
+# Price is NOT in the score — it becomes the denominator in a value ratio:
+#   value_ratio = score / (price / 100k)
+# Higher ratio = more bang for your buck.
+
+criteria:
+  lot_size_acres:
+    weight: 40
+    min: 0.5       # search filter minimum
+    max: 5.0       # sweet spot — above this doesn't help much
+    direction: higher_is_better
+
+  commute:
+    weight: 25
+    scoring: threshold
+    full_points_under: 20   # ≤20 min = 100% of weight
+    zero_points_over: 46    # 46+ min = 0% of weight
+    # Between 20 and 45: linear interpolation (45 min gets minimal points)
+
+  bedrooms:
+    weight: 20
+    scoring: peak
+    ideal: 3       # 3 bedrooms is perfect
+    min: 1         # below this = 0 (search already filters 2+)
+    max: 5         # above this = 0
+
+  bathrooms:
+    weight: 15
+    min: 0         # so 1 bath = 50%, 2 bath = 100%
+    max: 2         # 2 baths is heavenly — above still caps at 100
+    direction: higher_is_better
+
+# Boolean bonus features: flat points added after weighted average
+bonuses:
+  has_garage:
+    points: 15     # almost essential
+  has_basement:
+    points: 5      # awesome but not a must
+  has_fireplace:
+    points: 3      # nice, but can build a firepit
+
+# Properties scoring below this are not added to the spreadsheet
+minimum_score_threshold: 30

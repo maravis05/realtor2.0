@@ -1,0 +1,917 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office" lang="en" xml:lang="en">
+<head></head>
+<head>
+<title>Zillow</title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="x-apple-disable-message-reformatting" />
+<meta name="format-detection" content="telephone=no, date=no, address=no, email=no, url=no" />
+<meta name="color-scheme" content="light dark" />
+<style>
+/* Style Resets */
+html { height: 100%; }
+a { text-decoration: none; /* Necessary for Windows Mail CTAs */ }
+/* Email Client-Specific Hacks */
+u + .body .gpadl08, [class~='x_gpadl08'] { padding-left: 8px !important; }
+u + .body .gmailOnly { display: table !important; }
+.badge .dot { font-size: 18px !important; }
+/* Fonts */
+@font-face {
+font-family: 'Open Sans';
+font-style: normal;
+font-weight: 400;
+src: local('Open Sans Regular'), local('OpenSans-Regular'), url('https://fonts.gstatic.com/s/opensans/v18/mem8YaGs126MiZpBA-UFVZ0bf8pkAg.woff2') format('woff2');
+mso-font-alt: 'Arial';
+}
+@font-face {
+font-family: 'Open Sans';
+font-style: italic;
+font-weight: 400;
+src: local('Open Sans Italic'), local('OpenSans-Italic'), url('https://fonts.gstatic.com/s/opensans/v18/mem6YaGs126MiZpBA-UFUK0Zdc1GAK6b.woff2') format('woff2');
+mso-font-alt: 'Arial';
+}
+@font-face {
+font-family: 'Open Sans';
+font-style: normal;
+font-weight: 700;
+src: local('Open Sans Bold'), local('OpenSans-Bold'), url('https://fonts.gstatic.com/s/opensans/v18/mem5YaGs126MiZpBA-UN7rgOUuhpKKSTjw.woff2') format('woff2');
+src: url('https://fonts.gstatic.com/s/opensans/v18/mem5YaGs126MiZpBA-UNirkOUuhpKKSTjw.woff2') format('woff2');
+mso-font-alt: 'Arial';
+}
+@font-face {
+font-family: 'Open Sans';
+font-style: italic;
+font-weight: 700;
+src: local('Open Sans SemiBold Italic'), local('OpenSans-SemiBoldItalic'), url('https://fonts.gstatic.com/s/opensans/v18/memnYaGs126MiZpBA-UFUKXGUdhrIqOxjaPX.woff2') format('woff2');
+mso-font-alt: 'Arial';
+}
+/* Mobile Responsive */
+@media only screen and (max-width: 640px) {
+/* Badge fixes */
+.badge.label { padding: 1px 0 1px 0 !important; }
+.badge .indicatorText { vertical-align: 1px !important; }
+.badge .dot { line-height: 16px !important; }
+.badge.status { padding: 3px 0 2px 0 !important; }
+u + .body .badge i,
+u + .body .badge .dot {
+letter-spacing: 0px !important;
+}
+div > u + .body .badge.label { padding: 2px 4px 1px 4px !important; }
+div > u + .body .badge.status { padding: 3px 4px 1px 4px !important; }
+div > u + .body .badge .dot { font-size: 14px !important; }
+.showDesktopOnly {
+display: none;
+display: none !important;
+}
+.showMobileOnly {
+display: block !important;
+width: auto !important;
+overflow: visible !important;
+float: none !important;
+max-height: inherit !important;
+max-width: inherit !important;
+line-height: auto !important;
+margin-top: 0px !important;
+visibility: inherit !important;
+}
+.stackCellWrap { display: block !important; }
+.borderRadiusNone { border-radius: 0 !important; }
+.cta14 { font-size: 14px !important; }
+.font12 { font-size: 12px !important; }
+.font14 { font-size: 14px !important; }
+.font16 { font-size: 16px !important; }
+.font20 { font-size: 20px !important; }
+.h00 { height: 0px !important; }
+.lh13 { line-height: 13px !important; }
+.lh24 { line-height: 24px !important; }
+.mw502 { max-width: 502px !important; }
+.mw504 { max-width: 504px !important; }
+.mw600 { max-width: 600px !important; }
+.pad04 { padding: 4px !important; }
+.padb35p { padding-bottom: 35% !important; }
+.padt12 { padding-top: 12px !important; }
+.tableCell {
+display: table-cell !important;
+vertical-align: top !important;
+}
+.w16 { width: 16px !important; }
+.w100p { width: 100% !important; }
+/* Interactive - Dropdown Gmail Mobile */
+u + .body .expandableSection {
+border-width: 1px !important;
+max-height: 999px !important;
+overflow: visible !important;
+}
+div > u + .body .expandableSection {
+border-width: 0px !important;
+max-height: 0 !important;
+overflow: hidden !important;
+}
+u + .body .arrowRight,
+div > u + .body .arrowDown,
+u + .body #rightDark,
+u + .body #rightLight,
+div > u + .body #downLight {
+display: none !important;
+}
+u + .body .arrowDown,
+div > u + .body .arrowRight,
+u + .body #downLight,
+div > u + .body #rightLight {
+display: block !important;
+}
+}
+/* Interactive - Dropdown Gmail iPad */
+@media only screen and (min-device-width: 768px) and (max-device-width: 1366px) {
+u + .body .expandableSection {
+border-width: 1px !important;
+max-height: 999px !important;
+overflow: visible !important;
+}
+u + .body .arrowRight,
+u + .body #rightDark,
+u + .body #rightLight {
+display: none !important;
+}
+u + .body .arrowDown,
+u + .body #downLight {
+display: block !important;
+}
+}
+/* Hover Effects */
+.ctaPrimary, .ctaSecondary, .ctaTertiary, .ctaTxt,
+.ctaPrimaryInverse, .ctaSecondaryInverse, .ctaTertiaryInverse,
+.imageFade, span {
+transition: 0.3s !important;
+}
+.txtLinkPrimary:hover, .txtLinkFooter:hover {
+text-decoration: none !important;
+}
+.txtLinkSecondary:hover { text-decoration: underline !important; }
+.ctaPrimary:hover {
+background-color: #0d4599 !important;
+border-color: #0d4599 !important;
+}
+.ctaSecondary:hover {
+background-color: #e0f2ff !important;
+border-color: #0d4599 !important;
+}
+.ctaSecondary:hover span { color: #0d4599 !important; }
+.ctaTertiary:hover { background-color: #f1f1f4 !important; }
+.ctaTxt:hover {
+background-color: #e0f2ff !important;
+border-color: #e0f2ff !important;
+}
+.ctaPrimaryInverse:hover {
+background-color: #f2faff !important;
+border-color: #f2faff !important;
+}
+.ctaPrimaryInverse:hover span { color: #0d4599 !important; }
+.ctaSecondaryInverse:hover span { color: #2a2a33 !important; }
+.ctaSecondaryInverse:hover {
+border-color: #f1f1f4 !important;
+background-color: #f1f1f4 !important;
+}
+</style>
+<style>
+/* Dark Mode */
+[data-ogsc] h1, [data-ogsc] h2, [data-ogsc] h3, [data-ogsc] h4,
+[data-ogsc] h5, [data-ogsc] p, [data-ogsc] a, [data-ogsc] b,
+[data-ogsc] span, [data-ogsc] small, [data-ogsc] strong,
+[data-ogsc] address, [data-ogsc] .alt {
+color: #fffffe !important;
+}
+[data-ogsc] .txtLinkPrimary, [data-ogsc] .txtLinkSecondary {
+color: #579dff !important;
+}
+[data-ogsc] .txtLinkFooter, [data-ogsc] .dmTxtGray400 {
+color: #a7a6ab !important;
+}
+[data-ogsc] .dmTxtGray600 { color: #2a2a33 !important; }
+[data-ogsc] .dmTxtPurple300 { color: #b375ff !important; }
+[data-ogsc] .dmTxtRed600 { color: #a3000b !important; }
+[data-ogsc] .dmTxtRed500 { color: #e82b27 !important; }
+[data-ogsc] .dmTxtYellow300 { color: #ffd237 !important; }
+[data-ogsc] .dmTxtBlue200 { color: #E0F2FF !important; }
+[data-ogsc] .dmBgGray700 { background-color: #151516 !important; }
+[data-ogsc] .dmBgGray600 { background-color: #2a2a33 !important; }
+[data-ogsc] .dmBgBlue600 { background-color: #001751 !important; }
+[data-ogsc] .dmBorderGray500 { border-color: #54545a !important; }
+[data-ogsc] .buyDM,
+[data-ogsb] .buyDM {
+color: #D8F4DE !important;
+border-color: #D8F4DE !important;
+}
+[data-ogsb] .ctaPrimary {
+background-color: #579dff !important;
+border-color: #579dff !important;
+}
+[data-ogsc] .ctaPrimary span { color: #2a2a33 !important; }
+[data-ogsc] .ctaPrimary:hover span { color: #fffffe !important; }
+[data-ogsb] .ctaSecondary {
+background-color: transparent !important;
+border-color: #579dff !important;
+}
+[data-ogsb] .ctaSecondary span { color: #579dff !important; }
+[data-ogsc] .ctaSecondary:hover span { color: #006aff !important; }
+[data-ogsc] .ctaSecondary:hover {
+border-color: #006aff !important;
+background-color: #001751 !important;
+}
+[data-ogsb] .ctaTertiary {
+background-color: transparent !important;
+border-color: #fffffe !important;
+}
+[data-ogsc] .ctaTertiary span { color: #fffffe !important; }
+[data-ogsc] .ctaTertiary:hover span { color: #fffffe !important; }
+[data-ogsb] .ctaTertiary:hover {
+background-color: #001751 !important;
+border-color: #fffffe !important;
+}
+[data-ogsc] .ctaTxt span { color: #579dff !important; }
+[data-ogsb] .ctaTxt:hover {
+background-color: #001751 !important;
+border-color: #001751 !important;
+}
+[data-ogsc] .ctaPrimaryInverse span { color: #006aff !important; }
+[data-ogsc] .ctaTertiaryInverse span { color: #2a2a33 !important; }
+[data-ogsc] .iconInverse { filter: saturate(0%) invert(100%) brightness(1.4) !important; }
+[data-ogsc] .imgDark { display: block !important; }
+[data-ogsc] .imgLight {
+display: none;
+display: none !important;
+}
+@media (prefers-color-scheme: dark) {
+h1, h2, h3, h4, h5, p, a, b, span, small, strong, address, .alt {
+color: #fffffe !important;
+}
+.txtLinkPrimary, .txtLinkSecondary { color: #579dff !important; }
+.txtLinkFooter, .dmTxtGray400 { color: #a7a6ab !important; }
+.dmTxtGray600 { color: #2a2a33 !important; }
+.dmTxtPurple300 { color: #b375ff !important; }
+.dmTxtRed600 { color: #a3000b !important; }
+.dmTxtRed500 { color: #e82b27 !important; }
+.dmTxtYellow300 { color: #ffd237 !important; }
+.dmTxtBlue200 { color: #E0F2FF !important; }
+.dmBgGray700 { background-color: #151516 !important; }
+.dmBgGray600 { background-color: #2a2a33 !important; }
+.dmBgBlue600 { background-color: #001751 !important; }
+.dmBorderGray500 { border-color: #54545a !important; }
+.buyDM {
+color: #D8F4DE !important;
+border-color: #D8F4DE !important;
+}
+.ctaPrimary {
+background-color: #579dff !important;
+border-color: #579dff !important;
+}
+.ctaPrimary span { color: #2a2a33 !important; }
+.ctaPrimary:hover span { color: #fffffe !important; }
+.ctaSecondary {
+background-color: transparent !important;
+border-color: #579dff !important;
+}
+.ctaSecondary span { color: #579dff !important; }
+.ctaSecondary:hover span { color: #006aff !important; }
+.ctaSecondary:hover {
+border-color: #006aff !important;
+background-color: #001751 !important;
+}
+.ctaTertiary {
+background-color: transparent !important;
+border-color: #fffffe !important;
+}
+.ctaTertiary span { color: #fffffe !important; }
+.ctaTertiary:hover span { color: #fffffe !important; }
+.ctaTertiary:hover {
+background-color: #001751 !important;
+border-color: #fffffe !important;
+}
+.ctaTxt span { color: #579dff !important; }
+.ctaTxt:hover {
+background-color: #001751 !important;
+border-color: #001751 !important;
+}
+.ctaPrimaryInverse span { color: #006aff !important; }
+.ctaTertiaryInverse span { color: #2a2a33 !important; }
+.iconInverse { filter: saturate(0%) invert(100%) brightness(1.4) !important; }
+.imgDark { display: block !important; }
+.imgLight {
+display: none;
+display: none !important;
+}
+}
+/* Interactive - Hoverable Dropdown */
+.arrowRight,
+.expand:hover .arrowDown,
+.expand:hover #downLight,
+#rightLight {
+display: block !important;
+}
+.arrowDown,
+.expand:hover .arrowRight,
+.expand:hover #rightLight,
+#rightDark,
+#downLight {
+display: none !important;
+}
+.expand:hover .txtLinkSecondary {
+text-decoration: underline !important;
+}
+.expandableSection {
+border-width: 0 !important;
+display: block !important;
+max-height: 0 !important;
+overflow: hidden !important;
+position: static !important;
+transition: all 0.5s;
+}
+.expand:hover .expandableSection {
+border-width: 1px !important;
+max-height: 999px !important;
+overflow: visible !important;
+transition: all 0.5s;
+}
+</style>
+<style>
+.& .yahooAolOnly { display: /* table !important */; }
+img { background-color: transparent !important; }
+</style>
+<!--[if mso]>
+<noscript>
+<xml>
+<o:OfficeDocumentSettings>
+<o:AllowPNG />
+<o:PixelsPerInch>96</o:PixelsPerInch>
+</o:OfficeDocumentSettings>
+</xml>
+</noscript>
+<![endif]-->
+</head>
+<body class="body dmBgGray700" style="background-color: #ffffff; padding: 0; margin: 0; text-align: center; width: 100%; height: 100%">
+<div style="color:transparent;visibility:hidden;opacity:0;font-size:0px;border:0;max-height:1px;width:1px;margin:0px;padding:0px;border-width:0px!important;display:none!important;line-height:0px!important;"><img border="0" width="1" height="1" src="https://click.mail.zillow.com/q/DeGRpROPzPwqtRHhUy4R0w~~/AAAAARA~/1gUbqz6OBeA0L_v3Dw86kNZPWNJdrnGMrI2XtDVk54z1E_b77eY-ExwzjXv8fChdQTY8SAgFnrCvKy3FFelgGw~~" alt=""/></div>
+
+<table role="article" aria-label="Zillow" lang="en" cellpadding="0" cellspacing="0" border="0" style="width: 100%; text-align: center; vertical-align: middle; margin: 0 auto; table-layout: fixed">
+<tr>
+<td align="center" class="dmBgGray700" bgcolor="#ffffff">
+<img src="https://www.zillow.com/app/?tok=46051093-08c2-4a3e-833f-9baf8148a60d~X1-ZU18enu9ttw5z49_4u6i9&service=emailtrackingservice" width="1" height="1" style="display:none;">
+<!--[if !mso]><! -->
+<div style="display: none !important; display: none; overflow: hidden; float: left; width: 0px; max-height: 0px; max-width: 0px; line-height: 0px; visibility: hidden">
+Ready to see these homes for yourself? Request a tour&nbsp;today.&#847;&zwnj;&nbsp;&#8199;&#65279;&shy;&#847;&zwnj;&nbsp;&#8199;&#65279;&shy;&#847;&zwnj;&nbsp;&#8199;&#65279;&shy;&#847;&zwnj;&nbsp;&#8199;&#65279;&shy;&#847;&zwnj;&nbsp;&#8199;&#65279;&shy;&#847;&zwnj;&nbsp;&#8199;&#65279;&shy;&#847;&zwnj;&nbsp;&#8199;&#65279;&shy;&#847;&zwnj;&nbsp;&#8199;&#65279;&shy;&#847;&zwnj;&nbsp;&#8199;&#65279;&shy;&#847;&zwnj;&nbsp;&#8199;&#65279;&shy;&#847;&zwnj;&nbsp;&#8199;&#65279;&shy;&#847;&zwnj;&nbsp;&#8199;&#65279;&shy;&#847;&zwnj;&nbsp;&#8199;&#65279;&shy;&#847;&zwnj;&nbsp;&#8199;&#65279;&shy;&#847;&zwnj;&nbsp;&#8199;&#65279;&shy;&#847;&zwnj;&nbsp;&#8199;&#65279;&shy;&#847;&zwnj;&nbsp;&#8199;&#65279;&shy;&#847;&zwnj;&nbsp;&#8199;&#65279;&shy;&#847;&zwnj;&nbsp;&#8199;&#65279;&shy;&#847;&zwnj;&nbsp;&#8199;&#65279;&shy;&#847;&zwnj;&nbsp;&#8199;&#65279;&shy;&#847;&zwnj;&nbsp;&#8199;&#65279;&shy;&#847;&zwnj;&nbsp;&#8199;&#65279;&shy;&#847;&zwnj;&nbsp;&#8199;&#65279;&shy;&#847;&zwnj;&nbsp;&#8199;&#65279;&shy;&#847;&zwnj;&nbsp;&#8199;&#65279;&shy;&#847;&zwnj;&nbsp;&#8199;&#65279;&shy;&#847;&zwnj;&nbsp;&#8199;&#65279;&shy;&#847;&zwnj;&nbsp;&#8199;&#65279;&shy;&#847;&zwnj;&nbsp;&#8199;&#65279;&shy;&#847;&zwnj;&nbsp;&#8199;&#65279;&shy;&#847;&zwnj;&nbsp;&#8199;&#65279;&shy;&#847;&zwnj;&nbsp;&#8199;&#65279;&shy;&#847;&zwnj;&nbsp;&#8199;&#65279;&shy;&#847;&zwnj;&nbsp;&#8199;&#65279;&shy;&#847;&zwnj;&nbsp;&#8199;&#65279;&shy;&#847;&zwnj;&nbsp;&#8199;&#65279;&shy;&#847;&zwnj;&nbsp;&#8199;&#65279;&shy;&#847;&zwnj;&nbsp;&#8199;&#65279;&shy;&#847;&zwnj;&nbsp;&#8199;&#65279;&shy;&#847;&zwnj;&nbsp;&#8199;&#65279;&shy;&#847;&zwnj;&nbsp;&#8199;&#65279;&shy;&#847;&zwnj;&nbsp;&#8199;&#65279;&shy;&#847;&zwnj;&nbsp;&#8199;&#65279;&shy;&#847;&zwnj;&nbsp;&#8199;&#65279;&shy;&#847;&zwnj;&nbsp;&#8199;&#65279;&shy;&#847;&zwnj;&nbsp;&#8199;&#65279;&shy;&#847;&zwnj;&nbsp;&#8199;&#65279;&shy;&#847;&zwnj;&nbsp;&#8199;&#65279;&shy;&#847;&zwnj;&nbsp;&#8199;&#65279;&shy;&#847;&zwnj;&nbsp;&#8199;&#65279;&shy;&#847;&zwnj;&nbsp;&#8199;&#65279;&shy;&#847;&zwnj;&nbsp;&#8199;&#65279;&shy;&#847;&zwnj;&nbsp;&#8199;&#65279;&shy;&#847;&zwnj;&nbsp;&#8199;&#65279;&shy;&#847;&zwnj;&nbsp;&#8199;&#65279;&shy;&#847;&zwnj;&nbsp;&#8199;&#65279;&shy;&#847;&zwnj;&nbsp;&#8199;&#65279;&shy;&#847;&zwnj;&nbsp;&#8199;&#65279;&shy;&#847;&zwnj;&nbsp;&#8199;&#65279;&shy;&#847;&zwnj;&nbsp;&#8199;&#65279;&shy;&#847;&zwnj;&nbsp;&#8199;&#65279;&shy;&#847;&zwnj;&nbsp;&#8199;&#65279;&shy;&#847;&zwnj;&nbsp;&#8199;&#65279;&shy;&#847;&zwnj;&nbsp;&#8199;&#65279;&shy;&#847;&zwnj;&nbsp;&#8199;&#65279;&shy;&#847;&zwnj;&nbsp;&#8199;&#65279;&shy;&#847;&zwnj;&nbsp;&#8199;&#65279;&shy;&#847;&zwnj;&nbsp;&#8199;&#65279;&shy;&#847;&zwnj;&nbsp;&#8199;&#65279;&shy;&#847;&zwnj;&nbsp;&#8199;&#65279;&shy;&#847;&zwnj;&nbsp;&#8199;&#65279;&shy;&#847;&zwnj;&nbsp;&#8199;&#65279;&shy;&#847;&zwnj;&nbsp;&#8199;&#65279;&shy;&#847;&zwnj;&nbsp;&#8199;&#65279;&shy;&#847;&zwnj;&nbsp;&#8199;&#65279;&shy;&#847;&zwnj;&nbsp;&#8199;&#65279;&shy;&#847;&zwnj;&nbsp;&#8199;&#65279;&shy;&#847;&zwnj;&nbsp;&#8199;&#65279;&shy;&#847;&zwnj;&nbsp;&#8199;&#65279;&shy;&#847;&zwnj;&nbsp;&#8199;&#65279;&shy;&#847;&zwnj;&nbsp;&#8199;&#65279;&shy;&#847;&zwnj;&nbsp;&#8199;&#65279;&shy;&#847;&zwnj;&nbsp;&#8199;&#65279;&shy;&#847;&zwnj;&nbsp;&#8199;&#65279;&shy;&#847;&zwnj;&nbsp;&#8199;&#65279;&shy;&#847;&zwnj;&nbsp;&#8199;&#65279;&shy;&#847;&zwnj;&nbsp;&#8199;&#65279;&shy;&#847;&zwnj;&nbsp;&#8199;&#65279;&shy;&#847;&zwnj;&nbsp;&#8199;&#65279;&shy;&#847;&zwnj;&nbsp;&#8199;&#65279;&shy;&#847;&zwnj;&nbsp;&#8199;&#65279;&shy;&#847;&zwnj;&nbsp;&#8199;&#65279;&shy;&#847;&zwnj;&nbsp;&#8199;&#65279;&shy;&#847;&zwnj;&nbsp;&#8199;&#65279;&shy;&#847;&zwnj;&nbsp;&#8199;&#65279;&shy;&#847;&zwnj;&nbsp;&#8199;&#65279;&shy;&#847;&zwnj;&nbsp;&#8199;&#65279;&shy;&#847;&zwnj;&nbsp;&#8199;&#65279;&shy;&#847;&zwnj;&nbsp;&#8199;&#65279;&shy;&#847;&zwnj;&nbsp;&#8199;&#65279;&shy;&#847;&zwnj;&nbsp;&#8199;&#65279;&shy;&#847;&zwnj;&nbsp;&#8199;&#65279;&shy;&#847;&zwnj;&nbsp;&#8199;&#65279;&shy;&#847;&zwnj;&nbsp;&#8199;&#65279;&shy;&nbsp;&nbsp;
+</div>
+<!--<![endif]-->
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+<tr>
+<td align="center" style="padding: 0px 20px">
+<!-- template_id: saved_home_reminder_atomized-->
+<table role="presentation" cellpadding="0" cellspacing="0" border="0"><tr><td style="font-size: 0px; line-height: 32px">&nbsp;</td></tr></table>
+<h1 style="margin: 0 auto; padding: 0">
+<a href="https://click.mail.zillow.com/f/a/LBP9dhRuMfnukvL-2Vs0lg~~/AAAAARA~/trQ6HdV7cJITcrgzOHAetggcS2Tf-5RK_82SGQ2jwyymhQir74q1XM69U4HbYN3DWgpkVEfyfgrj_do-Sn2Q9HT3zQkaR7X55V27ZRGAQGT8mrM9kBa3uzHmoaEUK5o-QsNzHYtw1L0x9yKdpTWWqQ~~?target=https%3A%2F%2Fwww.zillow.com%2F%3Frtoken%3D46051093-08c2-4a3e-833f-9baf8148a60d%257EX1-ZU18enu9ttw5z49_4u6i9%26utm_campaign%3Demo-savedhomeremind4%26utm_source%3Demail%26utm_term%3Durn%3Amsg%3A20260209080632f29bfcfda611becc%26utm_medium%3Demail%26utm_content%3Dheaderzillowlogo" target="_blank" style="text-decoration: none">
+<img class="imgLight" src="https://zillowstatic.com/s3/email-statics/images/Zillow_Logo_300x64.png" alt="Zillow" border="0" height="32" width="150" style="display: block; color: #006aff; font-family: Arial, sans-serif; font-weight: bold; font-size: 32px; line-height: 1; text-align: center; text-decoration: none; margin: 0 auto; padding: 0; max-width: 100%; height: auto" />
+<!--[if !mso]><! -->
+<div class="imgDark" style="display: none">
+<img src="https://zillowstatic.com/s3/email-statics/images/Zillow_Logo_300x64_dm.png" alt="Zillow" border="0" height="32" width="150" style="display: block; color: #ffffff; font-family: Arial, sans-serif; font-weight: bold; font-size: 32px; line-height: 1; text-align: center; text-decoration: none; margin: 0 auto; padding: 0; max-width: 100%; height: auto" />
+</div>
+<!--<![endif]-->
+</a>
+</h1>
+<table role="presentation" cellpadding="0" cellspacing="0" border="0"><tr><td style="font-size: 0px; line-height: 24px">&nbsp;</td></tr></table>
+<table role="presentation" cellpadding="0" cellspacing="0" border="0">
+<tr>
+<td style="border-bottom: 2px solid #ffd237; width: 152px; font-size: 0; height: 0; line-height: 0; mso-line-height-rule: exactly">&nbsp;</td>
+</tr>
+</table>
+<table role="presentation" cellpadding="0" cellspacing="0" border="0"><tr><td class="lh24" style="font-size: 0px; line-height: 40px">&nbsp;</td></tr></table>
+<table role="presentation" class="mw504 w100p" cellpadding="0" cellspacing="0" border="0" style="width: 504px">
+<tr>
+<td align="center">
+<p class="font14" style="font-family: 'Open Sans', Helvetica, Arial, sans-serif; font-weight: 400; font-size: 16px; line-height: 24px; color: #2a2a33; margin: 0; padding: 0">Ready to see these homes for yourself? Request a tour&nbsp;today.</p>
+</td>
+</tr>
+</table>
+<table role="presentation" cellpadding="0" cellspacing="0" border="0"><tr><td class="lh24" style="font-size: 0px; line-height: 40px">&nbsp;</td></tr></table>
+<table role="presentation" class="mw502 w100p dmBorderGray500" align="center" cellpadding="0" cellspacing="0" border="0" style="width: 502px; border: 1px solid #d1d1d5; border-radius: 4px; mso-border-alt: 0">
+<tr>
+<td class="dmBgGray600" align="center" background="https://photos.zillowstatic.com/fp/32e00ffe1bb796dfb436b6255da798fd-p_e.jpg" style="background-repeat: no-repeat; background-position: center; background-size: cover; border-radius: 4px 4px 0px 0px; background-color: #f1f1f4">
+<!--[if gte mso 9]>
+<v:image xmlns:v="urn:schemas-microsoft-com:vml" fill="true" stroke="false" style="border: 0; display: block; width: 502px; height: 265px" src="https://photos.zillowstatic.com/fp/32e00ffe1bb796dfb436b6255da798fd-p_e.jpg" />
+<v:rect xmlns:v="urn:schemas-microsoft-com:vml" fill="true" stroke="false" style="border: 0; display: block; position: absolute; width: 502px; height: 265px" href="https://www.zillow.com/homedetails/86814380_zpid/?rtoken=46051093-08c2-4a3e-833f-9baf8148a60d%7EX1-ZU18enu9ttw5z49_4u6i9&utm_campaign=emo-savedhomeremind4&utm_source=email&utm_term=urn:msg:20260209080632f29bfcfda611becc&utm_medium=email&utm_content=forsaleimage" data-msys-linkname="emo-savedhomeremind4-forsaleimage">
+<v:fill opacity="0%" color="#f1f1f4" />
+<v:textbox inset="0,0,0,0">
+<![endif]-->
+<a href="https://click.mail.zillow.com/f/a/N0GaU_03fPZg8ze6DPc6eg~~/AAAAARA~/COZBB1JDoObfWbSnjZPWSu9XTu9EB7UiID5er1B6tTkLOBcWzVgrV3l14T9XjKveZme6NVz_S4M-ghn1Atlf3omlNrEbdXKCOfoDqkOTqz0Ee3GmCCrYlu16HiJn9_loncFBcY4wUy7gw9RSXLoKxQ~~?target=https%3A%2F%2Fwww.zillow.com%2Fhomedetails%2F86814380_zpid%2F%3Frtoken%3D46051093-08c2-4a3e-833f-9baf8148a60d%257EX1-ZU18enu9ttw5z49_4u6i9%26utm_campaign%3Demo-savedhomeremind4%26utm_source%3Demail%26utm_term%3Durn%3Amsg%3A20260209080632f29bfcfda611becc%26utm_medium%3Demail%26utm_content%3Dforsaleimage" style="text-decoration: none">
+<table role="presentation" class="w100p" align="center" cellpadding="0" cellspacing="0" border="0" style="width: 502px">
+<tr><td colspan="3" height="8" style="font-size: 0; line-height: 8px;">&nbsp;</td></tr>
+<tr>
+<td width="8" style="font-size: 0px; line-height: 0px">&nbsp;</td>
+<td align="left" valign="top" height="40" style="height: 40px;">
+<table role="presentation" cellpadding="0" cellspacing="0" border="0">
+<tr>
+<td align="center" valign="top" height="25">
+<p class="font12 badge label" style="background-color: #f9f9fb; border-radius: 4px; font-family: 'Open Sans', Helvetica, Arial, sans-serif; font-weight: 700; font-size: 14px; line-height: 15px; color: #2a2a33; mso-border-alt: 0; mso-padding-alt: 0; margin: 0; padding: 4px 0 5px 0">
+<i style="letter-spacing: 4px; mso-text-raise: 9px">&nbsp;</i>
+<span class="dot dmTxtRed500" style="font-family: 'Open Sans', Helvetica, Arial, sans-serif; font-weight: 700; line-height: 14px; letter-spacing: 1px; color: #e82b27; mso-text-raise: 5px">&#9679;&nbsp;</span><span class="indicatorText dmTxtGray600" style="font-family: 'Open Sans', Helvetica, Arial, sans-serif; font-weight: 700; mso-text-raise: 4px">Active</span>
+<i style="letter-spacing: 4px; mso-text-raise: 9px">&nbsp;</i>
+</p>
+</td>
+<td width="4" style="font-size: 0px; line-height: 0px">&nbsp;</td>
+</tr>
+</table>
+</td>
+<td align="right" valign="top" height="40" style="height: 40px; padding: 0px 8px">
+<img src="https://zillowstatic.com/s3/email-statics/images/icon_fav-toggled.png" border="0" alt="Favorite Icon" width="32" style="display: block; font-family: 'Open Sans', Helvetica, Arial, sans-serif; font-weight: 700; font-size: 14px; color: #0d4599" />
+</td>
+</tr>
+<tr>
+<td class="h00 padb35p" colspan="3" height="176" style="height: 176px" role="img" aria-label="Photo of a Property"></td>
+</tr>
+<tr>
+<td colspan="3" align="right" valign="bottom" height="24" style="height: 24px; padding: 8px">
+</td>
+</tr>
+</table>
+</a>
+<!--[if gte mso 9]>
+</v:textbox>
+</v:fill>
+</v:rect>
+</v:image>
+<![endif]-->
+</td>
+</tr>
+<tr>
+<td align="left" style="padding: 8px; font-size: 0">
+<a href="https://click.mail.zillow.com/f/a/dpWw_eP6zh9tY6mjXJgSqQ~~/AAAAARA~/FuRWZbUqAF5Mgd6jdOnxCTyCUYZQqAyXa3ERJwVqGntpNCYJD99Qtgjyclf0bBvACoNjttXELYjKsDi5X0gVZCu2hIJuQXslolUQyULcXL-xBIXkzfO5gjVZ3jTqVvtfG-Hj1fU45YlIkplMIHzxTA~~?target=https%3A%2F%2Fwww.zillow.com%2Fhomedetails%2F86814380_zpid%2F%3Frtoken%3D46051093-08c2-4a3e-833f-9baf8148a60d%257EX1-ZU18enu9ttw5z49_4u6i9%26utm_campaign%3Demo-savedhomeremind4%26utm_source%3Demail%26utm_term%3Durn%3Amsg%3A20260209080632f29bfcfda611becc%26utm_medium%3Demail%26utm_content%3Dforsaleaddress" style="text-decoration: none">
+<table role="presentation" cellpadding="0" cellspacing="0" border="0">
+<tr>
+<td valign="middle">
+<h5 style="display: inline-block; font-family: 'Open Sans', Helvetica, Arial, sans-serif; font-size: 20px; line-height: 24px; font-weight: 700; color: #2a2a33; margin: 0; padding: 0">$485,000</h5>
+</td>
+</tr>
+</table>
+<p style="font-family: 'Open Sans', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 24px; color: #2a2a33; margin: 0; padding: 0">
+<b>2</b>&nbsp;<abbr title="bedrooms" style="text-decoration: none">bd</abbr>
+<span style="color: #d1d1d5"> | </span>
+<b>1</b>&nbsp;<abbr title="bathrooms" style="text-decoration: none">ba</abbr>
+<span style="color: #d1d1d5"> | </span>
+<b>1,008</b>&nbsp;<abbr title="square feet" style="text-decoration: none">sqft</abbr>
+</p>
+<p style="font-family: 'Open Sans', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 24px; color: #2a2a33; margin: 0; padding: 0">408 Manchester Road, Auburn, NH</p>
+<p style="font-family: 'Open Sans', Helvetica, Arial, sans-serif; font-size: 10px; line-height: 16px; color: #596b82; margin: 2px 0 0 0; padding: 0;">PrimeMLS</p>
+</a>
+<table role="presentation" cellpadding="0" cellspacing="0" border="0"><tr><td style="font-size: 0px; line-height: 8px">&nbsp;</td></tr></table>
+<table role="presentation" class="w100p" cellpadding="0" cellspacing="0" border="0" align="center" style="width: 486px">
+<tr>
+<th class="stackCellWrap w100p" valign="top" align="left" style="padding-bottom: 1px">
+<!--[if (gte mso 9)|(IE)]>
+<table role="presentation" align="center" cellpadding="0" cellspacing="0" border="0" style="width: 238px; border: 1px solid #006aff; border-radius: 4px; mso-border-alt: 0">
+<tr>
+<td class="ctaSecondary" align="center">
+<![endif]-->
+<a class="lh13 w100p ctaSecondary" href="https://click.mail.zillow.com/f/a/iSzD4DfnBIl9-qFzQ8gkmA~~/AAAAARA~/gimHTMMAQPpg_VpnXQDlEBMDG4xs0VRIygs74PcFFiliD-DXLMTQhTiIMHUlWHGDPjcQwD6AspAGS5kvaHLebtFL14LVPfo9r1MuSd6StfJ2MxtgHz_o9J89RYFSfy3p?target=https%3A%2F%2Fwww.zillow.com%2Fhomedetails%2F86814380_zpid%2F%3Frtoken%3D46051093-08c2-4a3e-833f-9baf8148a60d%257EX1-ZU18enu9ttw5z49_4u6i9%26utm_campaign%3Demo-savedhomeremind4%26utm_source%3Demail%26utm_term%3Durn%3Amsg%3A20260209080632f29bfcfda611becc%26utm_medium%3Demail%26utm_content%3DviewitHDP" style="display: inline-block; line-height: 17px; margin: 0; mso-padding-alt: 0; text-align: center; text-decoration: none; width: 238px; border-radius: 4px; border: 1px solid #006aff; mso-border-alt: none; padding: 12px 0; background-color: #fffffe; font-size: 16px; color: #006aff"><i style="letter-spacing: 14px; mso-text-raise: 20px">&nbsp;</i><span style="margin: 0; font-family: 'Open Sans', Helvetica, Arial, sans-serif; font-weight: 700; mso-text-raise: 10px">View it</span><i style="letter-spacing: 14px">&nbsp;</i></a>
+<!--[if (gte mso 9)|(IE)]>
+</td>
+</tr>
+</table>
+<![endif]-->
+</th>
+<th class="stackCellWrap w100p" style="width: 6px; font-size: 0px; line-height: 8px; font-weight: normal">&nbsp;</th>
+<th class="stackCellWrap w100p" valign="top" align="right" style="padding-bottom: 1px">
+<!--[if (gte mso 9)|(IE)]>
+<table role="presentation" align="center" cellpadding="0" cellspacing="0" border="0" style="width: 238px; border-top: 1px solid #006aff; border-bottom: 1px solid #006aff; border-radius: 4px; mso-border-alt: 0">
+<tr>
+<td class="ctaPrimary" align="center" bgcolor="#006aff">
+<![endif]-->
+<a class="lh13 w100p ctaPrimary" href="https://click.mail.zillow.com/f/a/4XA5oeNf37fAWcBqPEuuaQ~~/AAAAARA~/e251ZMSn6898W6lOzZ-qtXiFTVtA1JZu85OP4HVGCMczlKrjEKo8FXeqwZlOWX5GSNI87QYDXWebeWVbeGSJCxS7tfrJFkgNqTG3KWIRGG3TgrMq9R5NHbfHJWp2jMu0?target=https%3A%2F%2Fwww.zillow.com%2Fhomedetails%2F86814380_zpid%2F%3FopenToForm%3Dtour%26rtoken%3D46051093-08c2-4a3e-833f-9baf8148a60d%257EX1-ZU18enu9ttw5z49_4u6i9%26utm_campaign%3Demo-savedhomeremind4%26utm_source%3Demail%26utm_term%3Durn%3Amsg%3A20260209080632f29bfcfda611becc%26utm_medium%3Demail%26utm_content%3DtourButton" style="display: inline-block; line-height: 17px; margin: 0; mso-padding-alt: 0; text-align: center; text-decoration: none; width: 238px; border-radius: 4px; border: 1px solid #006aff; mso-border-alt: none; padding: 12px 0; background-color: #006aff; font-size: 16px; color: #ffffff"><i style="letter-spacing: 14px; mso-text-raise: 20px">&nbsp;</i><span style="margin: 0; font-family: 'Open Sans', Helvetica, Arial, sans-serif; font-weight: 700; mso-text-raise: 10px">Schedule a tour</span><i style="letter-spacing: 14px">&nbsp;</i></a>
+<!--[if (gte mso 9)|(IE)]>
+</td>
+</tr>
+</table>
+<![endif]-->
+</th>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+<table role="presentation" cellpadding="0" cellspacing="0" border="0"><tr><td style="font-size: 0px; line-height: 24px">&nbsp;</td></tr></table>
+<table role="presentation" class="mw502 w100p dmBorderGray500" align="center" cellpadding="0" cellspacing="0" border="0" style="width: 502px; border: 1px solid #d1d1d5; border-radius: 4px; mso-border-alt: 0">
+<tr>
+<td class="dmBgGray600" align="center" background="https://photos.zillowstatic.com/fp/4e02f7f8a8c770cacd41ab412ba27f25-p_e.jpg" style="background-repeat: no-repeat; background-position: center; background-size: cover; border-radius: 4px 4px 0px 0px; background-color: #f1f1f4">
+<!--[if gte mso 9]>
+<v:image xmlns:v="urn:schemas-microsoft-com:vml" fill="true" stroke="false" style="border: 0; display: block; width: 502px; height: 265px" src="https://photos.zillowstatic.com/fp/4e02f7f8a8c770cacd41ab412ba27f25-p_e.jpg" />
+<v:rect xmlns:v="urn:schemas-microsoft-com:vml" fill="true" stroke="false" style="border: 0; display: block; position: absolute; width: 502px; height: 265px" href="https://www.zillow.com/homedetails/86808454_zpid/?rtoken=46051093-08c2-4a3e-833f-9baf8148a60d%7EX1-ZU18enu9ttw5z49_4u6i9&utm_campaign=emo-savedhomeremind4&utm_source=email&utm_term=urn:msg:20260209080632f29bfcfda611becc&utm_medium=email&utm_content=forsaleimage" data-msys-linkname="emo-savedhomeremind4-forsaleimage">
+<v:fill opacity="0%" color="#f1f1f4" />
+<v:textbox inset="0,0,0,0">
+<![endif]-->
+<a href="https://click.mail.zillow.com/f/a/4yXBl0da1OHlwZyflVNrag~~/AAAAARA~/COZBB1JDoObfWbSnjZPWSu9XTu9EB7UiID5er1B6tTkLOBcWzVgrV3l14T9XjKveZme6NVz_S4M-ghn1Atlf3omlNrEbdXKCOfoDqkOTqz0Ee3GmCCrYlu16HiJn9_loncFBcY4wUy7gw9RSXLoKxQ~~?target=https%3A%2F%2Fwww.zillow.com%2Fhomedetails%2F86808454_zpid%2F%3Frtoken%3D46051093-08c2-4a3e-833f-9baf8148a60d%257EX1-ZU18enu9ttw5z49_4u6i9%26utm_campaign%3Demo-savedhomeremind4%26utm_source%3Demail%26utm_term%3Durn%3Amsg%3A20260209080632f29bfcfda611becc%26utm_medium%3Demail%26utm_content%3Dforsaleimage" style="text-decoration: none">
+<table role="presentation" class="w100p" align="center" cellpadding="0" cellspacing="0" border="0" style="width: 502px">
+<tr><td colspan="3" height="8" style="font-size: 0; line-height: 8px;">&nbsp;</td></tr>
+<tr>
+<td width="8" style="font-size: 0px; line-height: 0px">&nbsp;</td>
+<td align="left" valign="top" height="40" style="height: 40px;">
+<table role="presentation" cellpadding="0" cellspacing="0" border="0">
+<tr>
+<td align="center" valign="top" height="25">
+<p class="font12 badge label" style="background-color: #f9f9fb; border-radius: 4px; font-family: 'Open Sans', Helvetica, Arial, sans-serif; font-weight: 700; font-size: 14px; line-height: 15px; color: #2a2a33; mso-border-alt: 0; mso-padding-alt: 0; margin: 0; padding: 4px 0 5px 0">
+<i style="letter-spacing: 4px; mso-text-raise: 9px">&nbsp;</i>
+<span class="dot dmTxtRed500" style="font-family: 'Open Sans', Helvetica, Arial, sans-serif; font-weight: 700; line-height: 14px; letter-spacing: 1px; color: #e82b27; mso-text-raise: 5px">&#9679;&nbsp;</span><span class="indicatorText dmTxtGray600" style="font-family: 'Open Sans', Helvetica, Arial, sans-serif; font-weight: 700; mso-text-raise: 4px">Active</span>
+<i style="letter-spacing: 4px; mso-text-raise: 9px">&nbsp;</i>
+</p>
+</td>
+<td width="4" style="font-size: 0px; line-height: 0px">&nbsp;</td>
+</tr>
+</table>
+</td>
+<td align="right" valign="top" height="40" style="height: 40px; padding: 0px 8px">
+<img src="https://zillowstatic.com/s3/email-statics/images/icon_fav-toggled.png" border="0" alt="Favorite Icon" width="32" style="display: block; font-family: 'Open Sans', Helvetica, Arial, sans-serif; font-weight: 700; font-size: 14px; color: #0d4599" />
+</td>
+</tr>
+<tr>
+<td class="h00 padb35p" colspan="3" height="176" style="height: 176px" role="img" aria-label="Photo of a Property"></td>
+</tr>
+<tr>
+<td colspan="3" align="right" valign="bottom" height="24" style="height: 24px; padding: 8px">
+</td>
+</tr>
+</table>
+</a>
+<!--[if gte mso 9]>
+</v:textbox>
+</v:fill>
+</v:rect>
+</v:image>
+<![endif]-->
+</td>
+</tr>
+<tr>
+<td align="left" style="padding: 8px; font-size: 0">
+<a href="https://click.mail.zillow.com/f/a/sBMQkD_zlPkV44OFl4to1g~~/AAAAARA~/FuRWZbUqAF5Mgd6jdOnxCTyCUYZQqAyXa3ERJwVqGntpNCYJD99Qtgjyclf0bBvACoNjttXELYjKsDi5X0gVZCu2hIJuQXslolUQyULcXL-xBIXkzfO5gjVZ3jTqVvtfG-Hj1fU45YlIkplMIHzxTA~~?target=https%3A%2F%2Fwww.zillow.com%2Fhomedetails%2F86808454_zpid%2F%3Frtoken%3D46051093-08c2-4a3e-833f-9baf8148a60d%257EX1-ZU18enu9ttw5z49_4u6i9%26utm_campaign%3Demo-savedhomeremind4%26utm_source%3Demail%26utm_term%3Durn%3Amsg%3A20260209080632f29bfcfda611becc%26utm_medium%3Demail%26utm_content%3Dforsaleaddress" style="text-decoration: none">
+<table role="presentation" cellpadding="0" cellspacing="0" border="0">
+<tr>
+<td valign="middle">
+<h5 style="display: inline-block; font-family: 'Open Sans', Helvetica, Arial, sans-serif; font-size: 20px; line-height: 24px; font-weight: 700; color: #2a2a33; margin: 0; padding: 0">$400,000</h5>
+</td>
+</tr>
+</table>
+<p style="font-family: 'Open Sans', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 24px; color: #2a2a33; margin: 0; padding: 0">
+<b>2</b>&nbsp;<abbr title="bedrooms" style="text-decoration: none">bd</abbr>
+<span style="color: #d1d1d5"> | </span>
+<b>2</b>&nbsp;<abbr title="bathrooms" style="text-decoration: none">ba</abbr>
+<span style="color: #d1d1d5"> | </span>
+<b>1,416</b>&nbsp;<abbr title="square feet" style="text-decoration: none">sqft</abbr>
+</p>
+<p style="font-family: 'Open Sans', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 24px; color: #2a2a33; margin: 0; padding: 0">378 Chester Road, Auburn, NH</p>
+<p style="font-family: 'Open Sans', Helvetica, Arial, sans-serif; font-size: 10px; line-height: 16px; color: #596b82; margin: 2px 0 0 0; padding: 0;">PrimeMLS</p>
+</a>
+<table role="presentation" cellpadding="0" cellspacing="0" border="0"><tr><td style="font-size: 0px; line-height: 8px">&nbsp;</td></tr></table>
+<table role="presentation" class="w100p" cellpadding="0" cellspacing="0" border="0" align="center" style="width: 486px">
+<tr>
+<th class="stackCellWrap w100p" valign="top" align="left" style="padding-bottom: 1px">
+<!--[if (gte mso 9)|(IE)]>
+<table role="presentation" align="center" cellpadding="0" cellspacing="0" border="0" style="width: 238px; border: 1px solid #006aff; border-radius: 4px; mso-border-alt: 0">
+<tr>
+<td class="ctaSecondary" align="center">
+<![endif]-->
+<a class="lh13 w100p ctaSecondary" href="https://click.mail.zillow.com/f/a/r7qQw3fTW2z6Nh1uNCZsFg~~/AAAAARA~/gimHTMMAQPpg_VpnXQDlEBMDG4xs0VRIygs74PcFFiliD-DXLMTQhTiIMHUlWHGDPjcQwD6AspAGS5kvaHLebtFL14LVPfo9r1MuSd6StfJ2MxtgHz_o9J89RYFSfy3p?target=https%3A%2F%2Fwww.zillow.com%2Fhomedetails%2F86808454_zpid%2F%3Frtoken%3D46051093-08c2-4a3e-833f-9baf8148a60d%257EX1-ZU18enu9ttw5z49_4u6i9%26utm_campaign%3Demo-savedhomeremind4%26utm_source%3Demail%26utm_term%3Durn%3Amsg%3A20260209080632f29bfcfda611becc%26utm_medium%3Demail%26utm_content%3DviewitHDP" style="display: inline-block; line-height: 17px; margin: 0; mso-padding-alt: 0; text-align: center; text-decoration: none; width: 238px; border-radius: 4px; border: 1px solid #006aff; mso-border-alt: none; padding: 12px 0; background-color: #fffffe; font-size: 16px; color: #006aff"><i style="letter-spacing: 14px; mso-text-raise: 20px">&nbsp;</i><span style="margin: 0; font-family: 'Open Sans', Helvetica, Arial, sans-serif; font-weight: 700; mso-text-raise: 10px">View it</span><i style="letter-spacing: 14px">&nbsp;</i></a>
+<!--[if (gte mso 9)|(IE)]>
+</td>
+</tr>
+</table>
+<![endif]-->
+</th>
+<th class="stackCellWrap w100p" style="width: 6px; font-size: 0px; line-height: 8px; font-weight: normal">&nbsp;</th>
+<th class="stackCellWrap w100p" valign="top" align="right" style="padding-bottom: 1px">
+<!--[if (gte mso 9)|(IE)]>
+<table role="presentation" align="center" cellpadding="0" cellspacing="0" border="0" style="width: 238px; border-top: 1px solid #006aff; border-bottom: 1px solid #006aff; border-radius: 4px; mso-border-alt: 0">
+<tr>
+<td class="ctaPrimary" align="center" bgcolor="#006aff">
+<![endif]-->
+<a class="lh13 w100p ctaPrimary" href="https://click.mail.zillow.com/f/a/0QlzcbM7Jt1lU-RVfelFeg~~/AAAAARA~/e251ZMSn6898W6lOzZ-qtXiFTVtA1JZu85OP4HVGCMczlKrjEKo8FXeqwZlOWX5GSNI87QYDXWebeWVbeGSJCxS7tfrJFkgNqTG3KWIRGG3TgrMq9R5NHbfHJWp2jMu0?target=https%3A%2F%2Fwww.zillow.com%2Fhomedetails%2F86808454_zpid%2F%3FopenToForm%3Dtour%26rtoken%3D46051093-08c2-4a3e-833f-9baf8148a60d%257EX1-ZU18enu9ttw5z49_4u6i9%26utm_campaign%3Demo-savedhomeremind4%26utm_source%3Demail%26utm_term%3Durn%3Amsg%3A20260209080632f29bfcfda611becc%26utm_medium%3Demail%26utm_content%3DtourButton" style="display: inline-block; line-height: 17px; margin: 0; mso-padding-alt: 0; text-align: center; text-decoration: none; width: 238px; border-radius: 4px; border: 1px solid #006aff; mso-border-alt: none; padding: 12px 0; background-color: #006aff; font-size: 16px; color: #ffffff"><i style="letter-spacing: 14px; mso-text-raise: 20px">&nbsp;</i><span style="margin: 0; font-family: 'Open Sans', Helvetica, Arial, sans-serif; font-weight: 700; mso-text-raise: 10px">Schedule a tour</span><i style="letter-spacing: 14px">&nbsp;</i></a>
+<!--[if (gte mso 9)|(IE)]>
+</td>
+</tr>
+</table>
+<![endif]-->
+</th>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+<table role="presentation" cellpadding="0" cellspacing="0" border="0"><tr><td style="font-size: 0px; line-height: 24px">&nbsp;</td></tr></table>
+<table role="presentation" class="mw502 w100p dmBorderGray500" align="center" cellpadding="0" cellspacing="0" border="0" style="width: 502px; border: 1px solid #d1d1d5; border-radius: 4px; mso-border-alt: 0">
+<tr>
+<td class="dmBgGray600" align="center" background="https://photos.zillowstatic.com/fp/ea32b567901f8966654e2ef578e31e28-p_e.jpg" style="background-repeat: no-repeat; background-position: center; background-size: cover; border-radius: 4px 4px 0px 0px; background-color: #f1f1f4">
+<!--[if gte mso 9]>
+<v:image xmlns:v="urn:schemas-microsoft-com:vml" fill="true" stroke="false" style="border: 0; display: block; width: 502px; height: 265px" src="https://photos.zillowstatic.com/fp/ea32b567901f8966654e2ef578e31e28-p_e.jpg" />
+<v:rect xmlns:v="urn:schemas-microsoft-com:vml" fill="true" stroke="false" style="border: 0; display: block; position: absolute; width: 502px; height: 265px" href="https://www.zillow.com/homedetails/117794945_zpid/?rtoken=46051093-08c2-4a3e-833f-9baf8148a60d%7EX1-ZU18enu9ttw5z49_4u6i9&utm_campaign=emo-savedhomeremind4&utm_source=email&utm_term=urn:msg:20260209080632f29bfcfda611becc&utm_medium=email&utm_content=forsaleimage" data-msys-linkname="emo-savedhomeremind4-forsaleimage">
+<v:fill opacity="0%" color="#f1f1f4" />
+<v:textbox inset="0,0,0,0">
+<![endif]-->
+<a href="https://click.mail.zillow.com/f/a/-kbt_eBh4K89jCj703K0Hg~~/AAAAARA~/COZBB1JDoObfWbSnjZPWSu9XTu9EB7UiID5er1B6tTkLOBcWzVgrV3l14T9XjKveZme6NVz_S4M-ghn1Atlf3omlNrEbdXKCOfoDqkOTqz0Ee3GmCCrYlu16HiJn9_loncFBcY4wUy7gw9RSXLoKxQ~~?target=https%3A%2F%2Fwww.zillow.com%2Fhomedetails%2F117794945_zpid%2F%3Frtoken%3D46051093-08c2-4a3e-833f-9baf8148a60d%257EX1-ZU18enu9ttw5z49_4u6i9%26utm_campaign%3Demo-savedhomeremind4%26utm_source%3Demail%26utm_term%3Durn%3Amsg%3A20260209080632f29bfcfda611becc%26utm_medium%3Demail%26utm_content%3Dforsaleimage" style="text-decoration: none">
+<table role="presentation" class="w100p" align="center" cellpadding="0" cellspacing="0" border="0" style="width: 502px">
+<tr><td colspan="3" height="8" style="font-size: 0; line-height: 8px;">&nbsp;</td></tr>
+<tr>
+<td width="8" style="font-size: 0px; line-height: 0px">&nbsp;</td>
+<td align="left" valign="top" height="40" style="height: 40px;">
+<table role="presentation" cellpadding="0" cellspacing="0" border="0">
+<tr>
+<td align="center" valign="top" height="25">
+<p class="font12 badge label" style="background-color: #f9f9fb; border-radius: 4px; font-family: 'Open Sans', Helvetica, Arial, sans-serif; font-weight: 700; font-size: 14px; line-height: 15px; color: #2a2a33; mso-border-alt: 0; mso-padding-alt: 0; margin: 0; padding: 4px 0 5px 0">
+<i style="letter-spacing: 4px; mso-text-raise: 9px">&nbsp;</i>
+<span class="dot dmTxtRed500" style="font-family: 'Open Sans', Helvetica, Arial, sans-serif; font-weight: 700; line-height: 14px; letter-spacing: 1px; color: #e82b27; mso-text-raise: 5px">&#9679;&nbsp;</span><span class="indicatorText dmTxtGray600" style="font-family: 'Open Sans', Helvetica, Arial, sans-serif; font-weight: 700; mso-text-raise: 4px">Active</span>
+<i style="letter-spacing: 4px; mso-text-raise: 9px">&nbsp;</i>
+</p>
+</td>
+<td width="4" style="font-size: 0px; line-height: 0px">&nbsp;</td>
+</tr>
+</table>
+</td>
+<td align="right" valign="top" height="40" style="height: 40px; padding: 0px 8px">
+<img src="https://zillowstatic.com/s3/email-statics/images/icon_fav-toggled.png" border="0" alt="Favorite Icon" width="32" style="display: block; font-family: 'Open Sans', Helvetica, Arial, sans-serif; font-weight: 700; font-size: 14px; color: #0d4599" />
+</td>
+</tr>
+<tr>
+<td class="h00 padb35p" colspan="3" height="176" style="height: 176px" role="img" aria-label="Photo of a Property"></td>
+</tr>
+<tr>
+<td colspan="3" align="right" valign="bottom" height="24" style="height: 24px; padding: 8px">
+</td>
+</tr>
+</table>
+</a>
+<!--[if gte mso 9]>
+</v:textbox>
+</v:fill>
+</v:rect>
+</v:image>
+<![endif]-->
+</td>
+</tr>
+<tr>
+<td align="left" style="padding: 8px; font-size: 0">
+<a href="https://click.mail.zillow.com/f/a/kHfftvEtsEHyx6oTN1qT_g~~/AAAAARA~/FuRWZbUqAF5Mgd6jdOnxCTyCUYZQqAyXa3ERJwVqGntpNCYJD99Qtgjyclf0bBvACoNjttXELYjKsDi5X0gVZCu2hIJuQXslolUQyULcXL-xBIXkzfO5gjVZ3jTqVvtfG-Hj1fU45YlIkplMIHzxTA~~?target=https%3A%2F%2Fwww.zillow.com%2Fhomedetails%2F117794945_zpid%2F%3Frtoken%3D46051093-08c2-4a3e-833f-9baf8148a60d%257EX1-ZU18enu9ttw5z49_4u6i9%26utm_campaign%3Demo-savedhomeremind4%26utm_source%3Demail%26utm_term%3Durn%3Amsg%3A20260209080632f29bfcfda611becc%26utm_medium%3Demail%26utm_content%3Dforsaleaddress" style="text-decoration: none">
+<table role="presentation" cellpadding="0" cellspacing="0" border="0">
+<tr>
+<td valign="middle">
+<h5 style="display: inline-block; font-family: 'Open Sans', Helvetica, Arial, sans-serif; font-size: 20px; line-height: 24px; font-weight: 700; color: #2a2a33; margin: 0; padding: 0">$399,999</h5>
+</td>
+</tr>
+</table>
+<p style="font-family: 'Open Sans', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 24px; color: #2a2a33; margin: 0; padding: 0">
+<b>3</b>&nbsp;<abbr title="bedrooms" style="text-decoration: none">bd</abbr>
+<span style="color: #d1d1d5"> | </span>
+<b>2</b>&nbsp;<abbr title="bathrooms" style="text-decoration: none">ba</abbr>
+<span style="color: #d1d1d5"> | </span>
+<b>2,028</b>&nbsp;<abbr title="square feet" style="text-decoration: none">sqft</abbr>
+</p>
+<p style="font-family: 'Open Sans', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 24px; color: #2a2a33; margin: 0; padding: 0">52 Elm Street, Goffstown, NH</p>
+<p style="font-family: 'Open Sans', Helvetica, Arial, sans-serif; font-size: 10px; line-height: 16px; color: #596b82; margin: 2px 0 0 0; padding: 0;">PrimeMLS</p>
+</a>
+<table role="presentation" cellpadding="0" cellspacing="0" border="0"><tr><td style="font-size: 0px; line-height: 8px">&nbsp;</td></tr></table>
+<table role="presentation" class="w100p" cellpadding="0" cellspacing="0" border="0" align="center" style="width: 486px">
+<tr>
+<th class="stackCellWrap w100p" valign="top" align="left" style="padding-bottom: 1px">
+<!--[if (gte mso 9)|(IE)]>
+<table role="presentation" align="center" cellpadding="0" cellspacing="0" border="0" style="width: 238px; border: 1px solid #006aff; border-radius: 4px; mso-border-alt: 0">
+<tr>
+<td class="ctaSecondary" align="center">
+<![endif]-->
+<a class="lh13 w100p ctaSecondary" href="https://click.mail.zillow.com/f/a/mfy9ArlRnJbtpOV6PWAomA~~/AAAAARA~/gimHTMMAQPpg_VpnXQDlEBMDG4xs0VRIygs74PcFFiliD-DXLMTQhTiIMHUlWHGDPjcQwD6AspAGS5kvaHLebtFL14LVPfo9r1MuSd6StfJ2MxtgHz_o9J89RYFSfy3p?target=https%3A%2F%2Fwww.zillow.com%2Fhomedetails%2F117794945_zpid%2F%3Frtoken%3D46051093-08c2-4a3e-833f-9baf8148a60d%257EX1-ZU18enu9ttw5z49_4u6i9%26utm_campaign%3Demo-savedhomeremind4%26utm_source%3Demail%26utm_term%3Durn%3Amsg%3A20260209080632f29bfcfda611becc%26utm_medium%3Demail%26utm_content%3DviewitHDP" style="display: inline-block; line-height: 17px; margin: 0; mso-padding-alt: 0; text-align: center; text-decoration: none; width: 238px; border-radius: 4px; border: 1px solid #006aff; mso-border-alt: none; padding: 12px 0; background-color: #fffffe; font-size: 16px; color: #006aff"><i style="letter-spacing: 14px; mso-text-raise: 20px">&nbsp;</i><span style="margin: 0; font-family: 'Open Sans', Helvetica, Arial, sans-serif; font-weight: 700; mso-text-raise: 10px">View it</span><i style="letter-spacing: 14px">&nbsp;</i></a>
+<!--[if (gte mso 9)|(IE)]>
+</td>
+</tr>
+</table>
+<![endif]-->
+</th>
+<th class="stackCellWrap w100p" style="width: 6px; font-size: 0px; line-height: 8px; font-weight: normal">&nbsp;</th>
+<th class="stackCellWrap w100p" valign="top" align="right" style="padding-bottom: 1px">
+<!--[if (gte mso 9)|(IE)]>
+<table role="presentation" align="center" cellpadding="0" cellspacing="0" border="0" style="width: 238px; border-top: 1px solid #006aff; border-bottom: 1px solid #006aff; border-radius: 4px; mso-border-alt: 0">
+<tr>
+<td class="ctaPrimary" align="center" bgcolor="#006aff">
+<![endif]-->
+<a class="lh13 w100p ctaPrimary" href="https://click.mail.zillow.com/f/a/VNgo80P8gbT4YANiNFcNzA~~/AAAAARA~/e251ZMSn6898W6lOzZ-qtXiFTVtA1JZu85OP4HVGCMczlKrjEKo8FXeqwZlOWX5GSNI87QYDXWebeWVbeGSJCxS7tfrJFkgNqTG3KWIRGG3TgrMq9R5NHbfHJWp2jMu0?target=https%3A%2F%2Fwww.zillow.com%2Fhomedetails%2F117794945_zpid%2F%3FopenToForm%3Dtour%26rtoken%3D46051093-08c2-4a3e-833f-9baf8148a60d%257EX1-ZU18enu9ttw5z49_4u6i9%26utm_campaign%3Demo-savedhomeremind4%26utm_source%3Demail%26utm_term%3Durn%3Amsg%3A20260209080632f29bfcfda611becc%26utm_medium%3Demail%26utm_content%3DtourButton" style="display: inline-block; line-height: 17px; margin: 0; mso-padding-alt: 0; text-align: center; text-decoration: none; width: 238px; border-radius: 4px; border: 1px solid #006aff; mso-border-alt: none; padding: 12px 0; background-color: #006aff; font-size: 16px; color: #ffffff"><i style="letter-spacing: 14px; mso-text-raise: 20px">&nbsp;</i><span style="margin: 0; font-family: 'Open Sans', Helvetica, Arial, sans-serif; font-weight: 700; mso-text-raise: 10px">Schedule a tour</span><i style="letter-spacing: 14px">&nbsp;</i></a>
+<!--[if (gte mso 9)|(IE)]>
+</td>
+</tr>
+</table>
+<![endif]-->
+</th>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+<table role="presentation" cellpadding="0" cellspacing="0" border="0"><tr><td style="font-size: 0px; line-height: 24px">&nbsp;</td></tr></table>
+<table role="presentation" class="mw502 w100p dmBorderGray500" align="center" cellpadding="0" cellspacing="0" border="0" style="width: 502px; border: 1px solid #d1d1d5; border-radius: 4px; mso-border-alt: 0">
+<tr>
+<td class="dmBgGray600" align="center" background="https://photos.zillowstatic.com/fp/71328d42bea3cd52c8bee9e86eb77707-p_e.jpg" style="background-repeat: no-repeat; background-position: center; background-size: cover; border-radius: 4px 4px 0px 0px; background-color: #f1f1f4">
+<!--[if gte mso 9]>
+<v:image xmlns:v="urn:schemas-microsoft-com:vml" fill="true" stroke="false" style="border: 0; display: block; width: 502px; height: 265px" src="https://photos.zillowstatic.com/fp/71328d42bea3cd52c8bee9e86eb77707-p_e.jpg" />
+<v:rect xmlns:v="urn:schemas-microsoft-com:vml" fill="true" stroke="false" style="border: 0; display: block; position: absolute; width: 502px; height: 265px" href="https://www.zillow.com/homedetails/92866854_zpid/?rtoken=46051093-08c2-4a3e-833f-9baf8148a60d%7EX1-ZU18enu9ttw5z49_4u6i9&utm_campaign=emo-savedhomeremind4&utm_source=email&utm_term=urn:msg:20260209080632f29bfcfda611becc&utm_medium=email&utm_content=forsaleimage" data-msys-linkname="emo-savedhomeremind4-forsaleimage">
+<v:fill opacity="0%" color="#f1f1f4" />
+<v:textbox inset="0,0,0,0">
+<![endif]-->
+<a href="https://click.mail.zillow.com/f/a/tAvxmucEzwAjswOzYkcKUA~~/AAAAARA~/COZBB1JDoObfWbSnjZPWSu9XTu9EB7UiID5er1B6tTkLOBcWzVgrV3l14T9XjKveZme6NVz_S4M-ghn1Atlf3omlNrEbdXKCOfoDqkOTqz0Ee3GmCCrYlu16HiJn9_loncFBcY4wUy7gw9RSXLoKxQ~~?target=https%3A%2F%2Fwww.zillow.com%2Fhomedetails%2F92866854_zpid%2F%3Frtoken%3D46051093-08c2-4a3e-833f-9baf8148a60d%257EX1-ZU18enu9ttw5z49_4u6i9%26utm_campaign%3Demo-savedhomeremind4%26utm_source%3Demail%26utm_term%3Durn%3Amsg%3A20260209080632f29bfcfda611becc%26utm_medium%3Demail%26utm_content%3Dforsaleimage" style="text-decoration: none">
+<table role="presentation" class="w100p" align="center" cellpadding="0" cellspacing="0" border="0" style="width: 502px">
+<tr><td colspan="3" height="8" style="font-size: 0; line-height: 8px;">&nbsp;</td></tr>
+<tr>
+<td width="8" style="font-size: 0px; line-height: 0px">&nbsp;</td>
+<td align="left" valign="top" height="40" style="height: 40px;">
+<table role="presentation" cellpadding="0" cellspacing="0" border="0">
+<tr>
+<td align="center" valign="top" height="25">
+<p class="font12 badge label" style="background-color: #f9f9fb; border-radius: 4px; font-family: 'Open Sans', Helvetica, Arial, sans-serif; font-weight: 700; font-size: 14px; line-height: 15px; color: #2a2a33; mso-border-alt: 0; mso-padding-alt: 0; margin: 0; padding: 4px 0 5px 0">
+<i style="letter-spacing: 4px; mso-text-raise: 9px">&nbsp;</i>
+<span class="dot dmTxtRed500" style="font-family: 'Open Sans', Helvetica, Arial, sans-serif; font-weight: 700; line-height: 14px; letter-spacing: 1px; color: #e82b27; mso-text-raise: 5px">&#9679;&nbsp;</span><span class="indicatorText dmTxtGray600" style="font-family: 'Open Sans', Helvetica, Arial, sans-serif; font-weight: 700; mso-text-raise: 4px">Active</span>
+<i style="letter-spacing: 4px; mso-text-raise: 9px">&nbsp;</i>
+</p>
+</td>
+<td width="4" style="font-size: 0px; line-height: 0px">&nbsp;</td>
+</tr>
+</table>
+</td>
+<td align="right" valign="top" height="40" style="height: 40px; padding: 0px 8px">
+<img src="https://zillowstatic.com/s3/email-statics/images/icon_fav-toggled.png" border="0" alt="Favorite Icon" width="32" style="display: block; font-family: 'Open Sans', Helvetica, Arial, sans-serif; font-weight: 700; font-size: 14px; color: #0d4599" />
+</td>
+</tr>
+<tr>
+<td class="h00 padb35p" colspan="3" height="176" style="height: 176px" role="img" aria-label="Photo of a Property"></td>
+</tr>
+<tr>
+<td colspan="3" align="right" valign="bottom" height="24" style="height: 24px; padding: 8px">
+</td>
+</tr>
+</table>
+</a>
+<!--[if gte mso 9]>
+</v:textbox>
+</v:fill>
+</v:rect>
+</v:image>
+<![endif]-->
+</td>
+</tr>
+<tr>
+<td align="left" style="padding: 8px; font-size: 0">
+<a href="https://click.mail.zillow.com/f/a/oB_iJTcm_2PmNbf6QWlr0A~~/AAAAARA~/FuRWZbUqAF5Mgd6jdOnxCTyCUYZQqAyXa3ERJwVqGntpNCYJD99Qtgjyclf0bBvACoNjttXELYjKsDi5X0gVZCu2hIJuQXslolUQyULcXL-xBIXkzfO5gjVZ3jTqVvtfG-Hj1fU45YlIkplMIHzxTA~~?target=https%3A%2F%2Fwww.zillow.com%2Fhomedetails%2F92866854_zpid%2F%3Frtoken%3D46051093-08c2-4a3e-833f-9baf8148a60d%257EX1-ZU18enu9ttw5z49_4u6i9%26utm_campaign%3Demo-savedhomeremind4%26utm_source%3Demail%26utm_term%3Durn%3Amsg%3A20260209080632f29bfcfda611becc%26utm_medium%3Demail%26utm_content%3Dforsaleaddress" style="text-decoration: none">
+<table role="presentation" cellpadding="0" cellspacing="0" border="0">
+<tr>
+<td valign="middle">
+<h5 style="display: inline-block; font-family: 'Open Sans', Helvetica, Arial, sans-serif; font-size: 20px; line-height: 24px; font-weight: 700; color: #2a2a33; margin: 0; padding: 0">$325,000</h5>
+</td>
+</tr>
+</table>
+<p style="font-family: 'Open Sans', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 24px; color: #2a2a33; margin: 0; padding: 0">
+<b>3</b>&nbsp;<abbr title="bedrooms" style="text-decoration: none">bd</abbr>
+<span style="color: #d1d1d5"> | </span>
+<b>2</b>&nbsp;<abbr title="bathrooms" style="text-decoration: none">ba</abbr>
+<span style="color: #d1d1d5"> | </span>
+<b>1,633</b>&nbsp;<abbr title="square feet" style="text-decoration: none">sqft</abbr>
+</p>
+<p style="font-family: 'Open Sans', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 24px; color: #2a2a33; margin: 0; padding: 0">25 Burns Hill Road, Wilton, NH</p>
+<p style="font-family: 'Open Sans', Helvetica, Arial, sans-serif; font-size: 10px; line-height: 16px; color: #596b82; margin: 2px 0 0 0; padding: 0;">PrimeMLS</p>
+</a>
+<table role="presentation" cellpadding="0" cellspacing="0" border="0"><tr><td style="font-size: 0px; line-height: 8px">&nbsp;</td></tr></table>
+<table role="presentation" class="w100p" cellpadding="0" cellspacing="0" border="0" align="center" style="width: 486px">
+<tr>
+<th class="stackCellWrap w100p" valign="top" align="left" style="padding-bottom: 1px">
+<!--[if (gte mso 9)|(IE)]>
+<table role="presentation" align="center" cellpadding="0" cellspacing="0" border="0" style="width: 238px; border: 1px solid #006aff; border-radius: 4px; mso-border-alt: 0">
+<tr>
+<td class="ctaSecondary" align="center">
+<![endif]-->
+<a class="lh13 w100p ctaSecondary" href="https://click.mail.zillow.com/f/a/8SdHEsM5vVYRnJ3rD8AEvg~~/AAAAARA~/gimHTMMAQPpg_VpnXQDlEBMDG4xs0VRIygs74PcFFiliD-DXLMTQhTiIMHUlWHGDPjcQwD6AspAGS5kvaHLebtFL14LVPfo9r1MuSd6StfJ2MxtgHz_o9J89RYFSfy3p?target=https%3A%2F%2Fwww.zillow.com%2Fhomedetails%2F92866854_zpid%2F%3Frtoken%3D46051093-08c2-4a3e-833f-9baf8148a60d%257EX1-ZU18enu9ttw5z49_4u6i9%26utm_campaign%3Demo-savedhomeremind4%26utm_source%3Demail%26utm_term%3Durn%3Amsg%3A20260209080632f29bfcfda611becc%26utm_medium%3Demail%26utm_content%3DviewitHDP" style="display: inline-block; line-height: 17px; margin: 0; mso-padding-alt: 0; text-align: center; text-decoration: none; width: 238px; border-radius: 4px; border: 1px solid #006aff; mso-border-alt: none; padding: 12px 0; background-color: #fffffe; font-size: 16px; color: #006aff"><i style="letter-spacing: 14px; mso-text-raise: 20px">&nbsp;</i><span style="margin: 0; font-family: 'Open Sans', Helvetica, Arial, sans-serif; font-weight: 700; mso-text-raise: 10px">View it</span><i style="letter-spacing: 14px">&nbsp;</i></a>
+<!--[if (gte mso 9)|(IE)]>
+</td>
+</tr>
+</table>
+<![endif]-->
+</th>
+<th class="stackCellWrap w100p" style="width: 6px; font-size: 0px; line-height: 8px; font-weight: normal">&nbsp;</th>
+<th class="stackCellWrap w100p" valign="top" align="right" style="padding-bottom: 1px">
+<!--[if (gte mso 9)|(IE)]>
+<table role="presentation" align="center" cellpadding="0" cellspacing="0" border="0" style="width: 238px; border-top: 1px solid #006aff; border-bottom: 1px solid #006aff; border-radius: 4px; mso-border-alt: 0">
+<tr>
+<td class="ctaPrimary" align="center" bgcolor="#006aff">
+<![endif]-->
+<a class="lh13 w100p ctaPrimary" href="https://click.mail.zillow.com/f/a/28Dcq-wTbf3_M2ZaVSkBFQ~~/AAAAARA~/e251ZMSn6898W6lOzZ-qtXiFTVtA1JZu85OP4HVGCMczlKrjEKo8FXeqwZlOWX5GSNI87QYDXWebeWVbeGSJCxS7tfrJFkgNqTG3KWIRGG3TgrMq9R5NHbfHJWp2jMu0?target=https%3A%2F%2Fwww.zillow.com%2Fhomedetails%2F92866854_zpid%2F%3FopenToForm%3Dtour%26rtoken%3D46051093-08c2-4a3e-833f-9baf8148a60d%257EX1-ZU18enu9ttw5z49_4u6i9%26utm_campaign%3Demo-savedhomeremind4%26utm_source%3Demail%26utm_term%3Durn%3Amsg%3A20260209080632f29bfcfda611becc%26utm_medium%3Demail%26utm_content%3DtourButton" style="display: inline-block; line-height: 17px; margin: 0; mso-padding-alt: 0; text-align: center; text-decoration: none; width: 238px; border-radius: 4px; border: 1px solid #006aff; mso-border-alt: none; padding: 12px 0; background-color: #006aff; font-size: 16px; color: #ffffff"><i style="letter-spacing: 14px; mso-text-raise: 20px">&nbsp;</i><span style="margin: 0; font-family: 'Open Sans', Helvetica, Arial, sans-serif; font-weight: 700; mso-text-raise: 10px">Schedule a tour</span><i style="letter-spacing: 14px">&nbsp;</i></a>
+<!--[if (gte mso 9)|(IE)]>
+</td>
+</tr>
+</table>
+<![endif]-->
+</th>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+<table role="presentation" cellpadding="0" cellspacing="0" border="0"><tr><td style="font-size: 0px; line-height: 48px">&nbsp;</td></tr></table>
+</td>
+</tr>
+</table>
+<table role="presentation" cellpadding="0" cellspacing="0" border="0" class="w100p dmBgBlue600 borderRadiusNone" style="width: 504px; background-color: #f2faff; border-radius: 4px">
+<tr>
+<td valign="top" align="right" style="padding: 0 16px">
+<table role="presentation" cellpadding="0" cellspacing="0" border="0"><tr><td style="font-size: 0px; line-height: 8px">&nbsp;</td></tr></table>
+<a href="https://click.mail.zillow.com/f/a/DgPHhElIT0OcuAKIzamBlA~~/AAAAARA~/i15mmiC2uuLFjKQENRaZq94ZKB_BiznCeeFp4QGbJ8_5NPHNSeMQZttrWuz7dWRHHmArlPc0H9gxPznZ4MnrzQ8HVyI0q2ZTy0yFrwQbASASxJHODHOhMUi6d4AYjxFG?target=https%3A%2F%2Fwww.zillow.com%2Fhomeloans%2Feligibility%3Fsource%3DZillow%26channel%3DeComms%26rtoken%3D46051093-08c2-4a3e-833f-9baf8148a60d%257EX1-ZU18enu9ttw5z49_4u6i9%26utm_campaign%3Demo-savedhomeremind4%26utm_source%3Demail%26utm_term%3Durn%3Amsg%3A20260209080632f29bfcfda611becc%26utm_medium%3Demail%26utm_content%3DZHLlogo" target="_blank" style="text-decoration: none">
+<img src="https://zillowstatic.com/s3/email-statics/images/ZHL_Logo_724x64.png" border="0" width="130" style="display: block; font-family: Arial, sans-serif; color: #006aff; font-weight: 700; font-size: 12px; line-height: 1; height: auto; max-width: 100%" alt="Zillow Home Loans" />
+</a>
+<table role="presentation" cellpadding="0" cellspacing="0" border="0"><tr><td style="font-size: 0px; line-height: 8px">&nbsp;</td></tr></table>
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+<tr>
+<td valign="top" align="right" style="width: 44px; min-width: 44px; padding: 0 16px 0 0">
+<img src="https://zillowstatic.com/s3/email-statics/images/Icon_for_sale_2x.png" border="0" width="44" style="display: block; font-family: Arial, sans-serif; color: #2a2a33; font-weight: 700; font-size: 12px; line-height: 1; height: auto; max-width: 100%" alt="For sale icon" />
+</td>
+<td valign="top" align="left">
+<strong style="font-family: 'Open Sans', Helvetica, Arial, sans-serif; font-weight: 700; font-size: 16px; line-height: 24px; color: #2a2a33; margin: 0; padding: 0">Get pre-qualified
+</strong>
+<p class="font14" style="font-family: 'Open Sans', Helvetica, Arial, sans-serif; font-weight: 400; font-size: 16px; line-height: 24px; color: #2a2a33; margin: 0; padding: 0">At Zillow Home Loans, we can pre-qualify you for a loan in as little as 5 minutes with no impact to your credit&nbsp;score.
+</p>
+<table role="presentation" cellpadding="0" cellspacing="0" border="0"><tr><td style="font-size: 0px; line-height: 8px">&nbsp;</td></tr></table>
+<a class="cta14 txtLinkSecondary" href="https://click.mail.zillow.com/f/a/ho2Z4dYtFLoH5NOZKpOIiQ~~/AAAAARA~/J3lUWQoB0kAmUdeYTJSMk0ipZ-Pts4FUTSGe0625Q01XPHuyg4CrhFeY3vqhBuZFM5BCibgs1hGrkRgSd1JfjNSdJeTpgZz1iL103JQJsavI5fx7WyyMBDdaG9HzYhFT?target=https%3A%2F%2Fwww.zillow.com%2Fhomeloans%2Feligibility%3Fsource%3DZillow%26channel%3DeComms%26rtoken%3D46051093-08c2-4a3e-833f-9baf8148a60d%257EX1-ZU18enu9ttw5z49_4u6i9%26utm_campaign%3Demo-savedhomeremind4%26utm_source%3Demail%26utm_term%3Durn%3Amsg%3A20260209080632f29bfcfda611becc%26utm_medium%3Demail%26utm_content%3DZHLChampion" style="display: inline-block; font-family: 'Open Sans', Helvetica, Arial, sans-serif; font-weight: 700; color: #0d4599; font-size: 16px; line-height: 24px; text-decoration: none; margin: 0; padding: 0">
+Start now</a>
+</td>
+</tr>
+</table>
+<table role="presentation" cellpadding="0" cellspacing="0" border="0"><tr><td style="font-size: 0px; line-height: 8px">&nbsp;</td></tr></table>
+<small style="font-family: 'Open Sans', Helvetica, Arial, sans-serif; font-weight: 400; font-size: 12px; line-height: 16px; color: #54545a; margin: 0; padding: 0">An equal housing lender. NMLS #&zwnj;10287.
+</small>
+<table role="presentation" cellpadding="0" cellspacing="0" border="0"><tr><td style="font-size: 0px; line-height: 8px">&nbsp;</td></tr></table>
+</td>
+</tr>
+</table>
+<table role="presentation" cellpadding="0" cellspacing="0" border="0"><tr><td style="font-size: 0px; line-height: 48px">&nbsp;</td></tr></table>
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+<tr>
+<td align="center">
+<!--[if !mso]><! -->
+<table role="presentation" class="gmailOnly w100p" width="600" cellpadding="0" cellspacing="0" border="0" style="background-color: #001751; display: none">
+<tr>
+<td align="center" style="padding: 0px 20px">
+<table role="presentation" cellpadding="0" cellspacing="0" border="0"><tr><td style="font-size: 0px; line-height: 32px">&nbsp;</td></tr></table>
+<table role="presentation" class="mw504 w100p" cellpadding="0" cellspacing="0" border="0" style="width: 504px">
+<tr>
+<td align="center">
+<strong style="font-family: 'Open Sans', Helvetica, Arial, sans-serif; font-weight: 700; font-size: 16px; line-height: 24px; color: #ffffff; margin: 0; padding: 0">Never miss your Zillow alerts
+</strong>
+<table role="presentation" cellpadding="0" cellspacing="0" border="0"><tr><td style="font-size: 0px; line-height: 8px">&nbsp;</td></tr></table>
+<p class="showDesktopOnly" style="font-family: 'Open Sans', Helvetica, Arial, sans-serif; font-weight: 400; font-size: 16px; line-height: 24px; color: #ffffff; margin: 0; padding: 0">To make sure updates land where you&rsquo;ll see them, drag and drop your Zillow emails into your Inbox&rsquo;s <strong>Primary</strong> tab.
+</p>
+<p class="showMobileOnly" style="display: none; font-family: 'Open Sans', Helvetica, Arial, sans-serif; font-weight: 400; font-size: 14px; line-height: 24px; color: #ffffff; margin: 0; padding: 0">Tap the three-dot <strong>More</strong> icon at the top of this screen, choose <strong>Move</strong>, then <strong>Primary</strong>.
+</p>
+</td>
+</tr>
+</table>
+<table role="presentation" cellpadding="0" cellspacing="0" border="0"><tr><td style="font-size: 0px; line-height: 32px">&nbsp;</td></tr></table>
+</td>
+</tr>
+</table>
+<!--<![endif]-->
+<table role="presentation" class="w100p" cellpadding="0" cellspacing="0" border="0" style="width: 600px">
+<tr>
+<td class="dmBorderGray500" style="border-bottom: 1px solid #d1d1d5; font-size: 0; height: 0; line-height: 0; mso-line-height-rule: exactly">&nbsp;</td>
+</tr>
+</table>
+<table role="presentation" class="mw600 w100p" cellpadding="0" cellspacing="0" border="0" style="width: 600px">
+<tr>
+<td align="center" style="padding: 0px 20px">
+<table role="presentation" cellpadding="0" cellspacing="0" border="0"><tr><td style="font-size: 0px; line-height: 16px">&nbsp;</td></tr></table>
+<address style="font-family: 'Open Sans', Helvetica, Arial, sans-serif; font-size: 12px; line-height: 16px; color: #54545a; font-style: normal; text-align: center; margin: 0; padding: 0">
+<a style="color: #54545a; text-decoration: none; cursor: pointer">
+Zillow, Inc.<br />
+1301 Second Avenue, Floor 36<br />
+Seattle, WA 98101<br />
+&copy;2006&ndash;2026
+</a>
+</address>
+<table role="presentation" cellpadding="0" cellspacing="0" border="0"><tr><td style="font-size: 0px; line-height: 16px">&nbsp;</td></tr></table>
+<small style="font-family: 'Open Sans', Helvetica, Arial, sans-serif; font-weight: 400; font-size: 12px; line-height: 16px; color: #54545a; margin: 0; padding: 0">Help improve your email experience!
+<a class="txtLinkPrimary" href="https://click.mail.zillow.com/f/web/TyYmp34BQuMRkbHIvNHoWg~~/AAAAARA~/FuRWZbUqAF5Mgd6jdOnxCTyCUYZQqAyXa3ERJwVqGnuJUjNX2EB8uwMFjALTqMa3FAD2Ct8ZqH8wHFg0Gk7c-ev68RoxR47YIVaymljFq1gouK2AkRtHjEqqj_j2afYU-hbKdpgZPgqMCH6pgJ8J7Q~~?target=https%3A%2F%2Fwww.zillow.com%2Femail%2Ffeedback%3Femail_campaign%3Demo-savedhomeremind4%26message_id%3Durn%253Amsg%253A20260209080632f29bfcfda611becc%26rtoken%3D46051093-08c2-4a3e-833f-9baf8148a60d%257EX1-ZU18enu9ttw5z49_4u6i9%26utm_campaign%3Demo-savedhomeremind4%26utm_source%3Demail%26utm_term%3Durn%3Amsg%3A20260209080632f29bfcfda611becc%26utm_medium%3Demail%26utm_content%3Dfooterfeedback" style="color: #0d4599; font-weight: 700; text-decoration: underline">Share&nbsp;your&nbsp;feedback
+</a></small>
+<table role="presentation" cellpadding="0" cellspacing="0" border="0"><tr><td style="font-size: 0px; line-height: 16px">&nbsp;</td></tr></table>
+<small style="font-family: 'Open Sans', Helvetica, Arial, sans-serif; font-weight: 400; font-size: 12px; line-height: 16px; color: #54545a; margin: 0; padding: 0"><a class="txtLinkSecondary" href="https://click.mail.zillow.com/f/a/fngxiOK_tm9E1E7WqTAUhw~~/AAAAARA~/jOTgeGrpy1uOQV5hW7YFKdOECpCUW5D48AYNXsMHdorsXgFuo1O7jrZHcArS5vUA3Nwqb9yTnWqvgcUtDuPZArqmOsfmjmLF6QjfjM86MELXJR8qW-Kj69lMI6YFWJrB_s2-WHi9NRxjKqwNLO23dw~~?target=https%3A%2F%2Fwww.zillowgroup.com%2Fzg-privacy-policy%2F%3Frtoken%3D46051093-08c2-4a3e-833f-9baf8148a60d%257EX1-ZU18enu9ttw5z49_4u6i9%26utm_campaign%3Demo-savedhomeremind4%26utm_source%3Demail%26utm_term%3Durn%3Amsg%3A20260209080632f29bfcfda611becc%26utm_medium%3Demail%26utm_content%3Dfooterprivacy" style="color: #0d4599; font-weight: 700; text-decoration: none">Privacy&nbsp;policy</a>
+&nbsp;|&nbsp;
+<a class="txtLinkSecondary" href="https://click.mail.zillow.com/f/a/O8FqpR-sd9gXSXmF4JiBxA~~/AAAAARA~/J3lUWQoB0kAmUdeYTJSMk1H3UB6vjN_jn_VPmrduDSvXpJ-fUAAIdLR0Kry7DgJTyrSyKbdUDD4gPE-Uz3Mpa9QSj26dfyCSdnPVydhgJveH39CplXDkaq6nLL1V1ctv?target=https%3A%2F%2Fwww.zillow.com%2Femail%2FUnsubscribeEnrollment.htm%3Ftoken%3DenV3.1770624392129.QeqxvekZjQ8xhao-yhN_cw.HIoz8FXwUD_Vin_NdQIWgkcb-TB8NaLSxmXCG6cgaLk.5hJWcyO3SW1DDEgGRDmRU3gxvrMORv4KTLf7Jal8MrY%26rtoken%3D46051093-08c2-4a3e-833f-9baf8148a60d%257EX1-ZU18enu9ttw5z49_4u6i9%26utm_campaign%3Demo-savedhomeremind4%26utm_source%3Demail%26utm_term%3Durn%3Amsg%3A20260209080632f29bfcfda611becc%26utm_medium%3Demail%26utm_content%3Dfooterunsub" style="color: #0d4599; font-weight: 700; text-decoration: none">Unsubscribe&nbsp;from&nbsp;this&nbsp;email</a>
+&nbsp;|&nbsp;
+<a class="txtLinkSecondary" href="https://click.mail.zillow.com/f/a/sz67RvlOssegt7z14xeFaQ~~/AAAAARA~/LugkFH8PF7Ve8R0uMa34HfniFDnK5d243DBL3D2bQfLiLl-dQ-kBA67STemTW8pSDS8uCVvgczu5zmUDTHlinFX2dndQ2a0GHMldSunlji7uEazQEcgQ_veYnHftb6hfcsqnHyG5uvLWnzQzePNEpw~~?target=https%3A%2F%2Fwww.zillow.com%2Fmyzillow%2Fnotifications%3Frtoken%3D46051093-08c2-4a3e-833f-9baf8148a60d%257EX1-ZU18enu9ttw5z49_4u6i9%26utm_campaign%3Demo-savedhomeremind4%26utm_source%3Demail%26utm_term%3Durn%3Amsg%3A20260209080632f29bfcfda611becc%26utm_medium%3Demail%26utm_content%3Dfooterpreferences" style="color: #0d4599; font-weight: 700; text-decoration: none">Update&nbsp;your&nbsp;preferences</a>
+</small>
+</td>
+</tr>
+</table>
+<table role="presentation" cellpadding="0" cellspacing="0" border="0"><tr><td style="font-size: 0px; line-height: 24px">&nbsp;</td></tr></table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+
+<img border="0" width="1" height="1" alt="" src="https://click.mail.zillow.com/q/BptLbnSexU4fpLCCg1q1Dg~~/AAAAARA~/BmiMfulxuo7SpAEN84Bj8EQhcAPZdVo9x-sA2LB2c-aCYx9koasYHy-_IPPLbWHXMyiAItqXM8VauqwXRqYOnw~~">
+</body>
+</html>

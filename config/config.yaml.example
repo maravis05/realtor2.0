@@ -1,0 +1,37 @@
+# Copy this file to config.yaml and fill in your values.
+
+gmail:
+  # Your Gmail address
+  email: "you@gmail.com"
+  # App password (not your regular password).
+  # Generate at: https://myaccount.google.com/apppasswords
+  app_password: "xxxx xxxx xxxx xxxx"
+
+google_sheets:
+  # Path to Google service account JSON key file
+  credentials_file: "config/credentials/your-service-account.json"
+  # The spreadsheet ID from the Google Sheets URL:
+  # https://docs.google.com/spreadsheets/d/<THIS_PART>/edit
+  spreadsheet_id: "YOUR_SPREADSHEET_ID"
+
+rentcast:
+  # RentCast API key — sign up at https://www.rentcast.io/api
+  api_key: "YOUR_RENTCAST_API_KEY"
+
+google_maps:
+  # Google Maps Distance Matrix API key
+  # Enable at: https://console.cloud.google.com/apis/library/distance-matrix-backend.googleapis.com
+  api_key: "YOUR_GOOGLE_MAPS_API_KEY"
+  # Commute destinations — drive time from each property to these locations.
+  # Add as many as you like; all are looked up in a single API call per property.
+  destinations:
+    - label: "Work"
+      address: "123 Main St, Your City, ST 00000"
+    - label: "School"
+      address: "456 Oak Ave, Your City, ST 00000"
+
+pipeline:
+  # Max listings to process per run (saves RentCast API quota)
+  max_listings_per_run: 20
+  # Log file path (relative to project root)
+  log_file: "logs/pipeline.log"
