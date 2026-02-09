@@ -26,25 +26,28 @@ SCOPES = [
 ]
 
 LISTINGS_HEADERS = [
+    "Link",
     "Date Added",
     "ZPID",
+    "Town",
     "Address",
     "Listing Price",
-    "Last Sale Price",
-    "Last Sale Date",
+    "Property Tax",
     "Beds",
     "Baths",
     "SqFt",
     "Lot (acres)",
+    "Commutes",
+    "Garage",
+    "Basement",
+    "Fireplace",
     "Year Built",
     "HOA",
+    "Last Sale Price",
+    "Last Sale Date",
     "Property Type",
     "County",
-    "Garage",
-    "Garage Spaces",
-    "Basement",
-    "Foundation",
-    "Fireplace",
+    "Tax Assessment",
     "Pool",
     "Heating",
     "Cooling",
@@ -52,12 +55,10 @@ LISTINGS_HEADERS = [
     "Rooms",
     "Exterior",
     "Roof",
-    "Property Tax",
-    "Tax Assessment",
     "Latitude",
     "Longitude",
-    "Commutes",
-    "Link",
+    "Garage Spaces",
+    "Foundation",
 ]
 
 
@@ -151,6 +152,8 @@ class SheetsClient:
             self.listings_ws.update("A1", [LISTINGS_HEADERS])
             self._bold_row(self.listings_ws, len(LISTINGS_HEADERS))
 
+        self._apply_currency_format(self.listings_ws)
+
     def get_existing_zpids(self) -> set[str]:
         """Return the set of ZPIDs already in the Listings tab."""
         try:
@@ -169,25 +172,28 @@ class SheetsClient:
             return False
 
         row = [
+            prop.listing_url,
             date.today().isoformat(),
             prop.zpid,
+            prop.town,
             prop.address,
             prop.price,
-            prop.last_sale_price,
-            prop.last_sale_date,
+            prop.property_tax,
             prop.bedrooms,
             prop.bathrooms,
             prop.sqft,
             prop.lot_size_acres,
+            json.dumps(prop.commute_minutes) if prop.commute_minutes else "",
+            _bool_to_cell(prop.has_garage),
+            _bool_to_cell(prop.has_basement),
+            _bool_to_cell(prop.has_fireplace),
             prop.year_built,
             prop.hoa_monthly,
+            prop.last_sale_price,
+            prop.last_sale_date,
             prop.property_type,
             prop.county,
-            _bool_to_cell(prop.has_garage),
-            prop.garage_spaces,
-            _bool_to_cell(prop.has_basement),
-            prop.foundation_type,
-            _bool_to_cell(prop.has_fireplace),
+            prop.tax_assessment,
             "Yes" if prop.has_pool else "No",
             "Yes" if prop.has_heating else "No",
             "Yes" if prop.has_cooling else "No",
@@ -195,12 +201,10 @@ class SheetsClient:
             prop.room_count,
             prop.exterior_type,
             prop.roof_type,
-            prop.property_tax,
-            prop.tax_assessment,
             prop.latitude,
             prop.longitude,
-            json.dumps(prop.commute_minutes) if prop.commute_minutes else "",
-            prop.listing_url,
+            prop.garage_spaces,
+            prop.foundation_type,
         ]
 
         self.listings_ws.append_row(row, value_input_option="USER_ENTERED")
@@ -227,6 +231,7 @@ class SheetsClient:
                 properties.append(Property(
                     zpid=str(row.get("ZPID", "")),
                     address=str(row.get("Address", "")),
+                    town=str(row.get("Town", "")),
                     price=int(row.get("Listing Price", 0) or 0),
                     bedrooms=int(row.get("Beds", 0) or 0),
                     bathrooms=float(row.get("Baths", 0) or 0),
@@ -364,3 +369,17 @@ class SheetsClient:
             ws.format(f"A1:{col_letter}1", {"textFormat": {"bold": True}})
         except Exception as e:
             logger.debug("Could not bold header: %s", e)
+
+    @staticmethod
+    def _apply_currency_format(ws: gspread.Worksheet) -> None:
+        """Apply currency format ($#,##0) to Listing Price and Property Tax columns."""
+        currency_fmt = {"numberFormat": {"type": "CURRENCY", "pattern": "$#,##0"}}
+        price_col = _col_letter(LISTINGS_HEADERS.index("Listing Price") + 1)
+        tax_col = _col_letter(LISTINGS_HEADERS.index("Property Tax") + 1)
+        try:
+            ws.batch_format([
+                (f"{price_col}2:{price_col}1000", currency_fmt),
+                (f"{tax_col}2:{tax_col}1000", currency_fmt),
+            ])
+        except Exception as e:
+            logger.debug("Could not apply currency format: %s", e)

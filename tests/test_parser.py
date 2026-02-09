@@ -6,6 +6,7 @@ from src.parser import Property, parse_from_rentcast, _most_recent_value
 SAMPLE_PROPERTY = {
     "id": "def456",
     "formattedAddress": "408 Manchester Rd, Auburn, NH 03032",
+    "city": "Auburn",
     "lastSalePrice": 350000,
     "lastSaleDate": "2020-06-15T00:00:00.000Z",
     "bedrooms": 3,
@@ -60,6 +61,7 @@ class TestParseFromRentcast:
         )
         assert prop.zpid == "12345678"
         assert prop.address == "408 Manchester Rd, Auburn, NH 03032"
+        assert prop.town == "Auburn"
         assert prop.bedrooms == 3
         assert prop.bathrooms == 2.0
         assert prop.sqft == 1850
@@ -115,6 +117,7 @@ class TestParseFromRentcast:
         prop = parse_from_rentcast(minimal, "999", "")
         assert prop.zpid == "999"
         assert prop.address == "123 Test St"
+        assert prop.town == ""
         assert prop.price == 0
         assert prop.bedrooms == 0
         assert prop.lot_size_acres == 0.0

@@ -12,6 +12,7 @@ SQFT_PER_ACRE = 43_560
 class Property:
     zpid: str = ""
     address: str = ""
+    town: str = ""
     price: int = 0  # listing price from Zillow email
     bedrooms: int = 0
     bathrooms: float = 0.0
@@ -134,6 +135,7 @@ def parse_from_rentcast(
     return Property(
         zpid=zpid,
         address=str(_dig(data, "formattedAddress") or ""),
+        town=str(data.get("city", "") or ""),
         price=listing_price,
         bedrooms=_safe_int(_dig(data, "bedrooms")),
         bathrooms=_safe_float(_dig(data, "bathrooms")),
