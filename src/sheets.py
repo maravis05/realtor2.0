@@ -86,6 +86,25 @@ def _build_scores_headers(commute_labels: list[str]) -> list[str]:
     return headers
 
 
+def _bool_to_cell(val: bool | None) -> str:
+    """Convert three-valued bool to sheet cell: True→'Yes', False→'No', None→''."""
+    if val is True:
+        return "Yes"
+    if val is False:
+        return "No"
+    return ""
+
+
+def _cell_to_bool(val: str) -> bool | None:
+    """Convert sheet cell to three-valued bool: 'yes'→True, 'no'→False, ''→None."""
+    s = str(val).strip().lower()
+    if s == "yes":
+        return True
+    if s == "no":
+        return False
+    return None
+
+
 def _col_letter(n: int) -> str:
     """Convert 1-based column number to letter(s): 1→A, 26→Z, 27→AA."""
     result = ""
@@ -164,11 +183,11 @@ class SheetsClient:
             prop.hoa_monthly,
             prop.property_type,
             prop.county,
-            "Yes" if prop.has_garage else "No",
+            _bool_to_cell(prop.has_garage),
             prop.garage_spaces,
-            "Yes" if prop.has_basement else "No",
+            _bool_to_cell(prop.has_basement),
             prop.foundation_type,
-            "Yes" if prop.has_fireplace else "No",
+            _bool_to_cell(prop.has_fireplace),
             "Yes" if prop.has_pool else "No",
             "Yes" if prop.has_heating else "No",
             "Yes" if prop.has_cooling else "No",
@@ -215,9 +234,9 @@ class SheetsClient:
                     lot_size_acres=float(row.get("Lot (acres)", 0) or 0),
                     year_built=int(row.get("Year Built", 0) or 0),
                     hoa_monthly=int(row.get("HOA", 0) or 0),
-                    has_garage=str(row.get("Garage", "")).lower() == "yes",
-                    has_basement=str(row.get("Basement", "")).lower() == "yes",
-                    has_fireplace=str(row.get("Fireplace", "")).lower() == "yes",
+                    has_garage=_cell_to_bool(row.get("Garage", "")),
+                    has_basement=_cell_to_bool(row.get("Basement", "")),
+                    has_fireplace=_cell_to_bool(row.get("Fireplace", "")),
                     property_type=str(row.get("Property Type", "")),
                     listing_url=str(row.get("Link", "")),
                     last_sale_price=int(row.get("Last Sale Price", 0) or 0),
@@ -290,9 +309,9 @@ class SheetsClient:
                 prop.bathrooms,
                 prop.sqft,
                 prop.lot_size_acres,
-                "Yes" if prop.has_garage else "No",
-                "Yes" if prop.has_basement else "No",
-                "Yes" if prop.has_fireplace else "No",
+                _bool_to_cell(prop.has_garage),
+                _bool_to_cell(prop.has_basement),
+                _bool_to_cell(prop.has_fireplace),
                 breakdown.summary(),
                 prop.zpid,
                 prop.listing_url,

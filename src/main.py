@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import json
 import logging
 import platform
 import sys
@@ -176,6 +177,14 @@ def _run_pipeline(config: dict, logger: logging.Logger, run_id: str) -> None:
                 logger.warning("%s  RentCast lookup failed", step)
                 failed += 1
                 continue
+
+            # Save raw API response for diagnosis
+            dump_dir = PROJECT_ROOT / "data" / "rentcast"
+            dump_dir.mkdir(parents=True, exist_ok=True)
+            dump_path = dump_dir / f"{link.zpid}.json"
+            with open(dump_path, "w") as f:
+                json.dump(property_data, f, indent=2)
+            logger.debug("%s  Saved raw response to %s", step, dump_path)
 
             # Parse into Property
             try:

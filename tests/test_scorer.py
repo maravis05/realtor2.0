@@ -56,9 +56,9 @@ def _make_property(**overrides) -> Property:
         lot_size_acres=3.0,
         year_built=2000,
         hoa_monthly=0,
-        has_garage=False,
-        has_basement=False,
-        has_fireplace=False,
+        has_garage=None,
+        has_basement=None,
+        has_fireplace=None,
         property_type="SINGLE_FAMILY",
         commute_minutes={"Work": 15, "School": 20},
     )
@@ -143,6 +143,15 @@ class TestScoring:
         result = score_property(prop, config=SAMPLE_CONFIG)
         assert "sqft" not in result.criterion_scores
         assert "year_built" not in result.criterion_scores
+
+    def test_none_bonus_awards_zero(self):
+        """None (unknown) bonus features should award 0 points, same as False."""
+        no_bonus = _make_property(has_garage=False, has_basement=False, has_fireplace=False)
+        unknown = _make_property(has_garage=None, has_basement=None, has_fireplace=None)
+        s_no = score_property(no_bonus, config=SAMPLE_CONFIG)
+        s_unknown = score_property(unknown, config=SAMPLE_CONFIG)
+        assert s_no.final_score == s_unknown.final_score
+        assert s_unknown.bonus_total == 0.0
 
 
 class TestBedroomPeakScoring:

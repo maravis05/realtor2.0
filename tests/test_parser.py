@@ -100,9 +100,9 @@ class TestParseFromRentcast:
     def test_no_features_when_missing(self):
         data = {k: v for k, v in SAMPLE_PROPERTY.items() if k != "features"}
         prop = parse_from_rentcast(data, "1", "")
-        assert prop.has_garage is False
-        assert prop.has_fireplace is False
-        assert prop.has_basement is False
+        assert prop.has_garage is None
+        assert prop.has_fireplace is None
+        assert prop.has_basement is None
         assert prop.garage_spaces == 0
 
     def test_hoa_fee_nested(self):
@@ -130,6 +130,37 @@ class TestParseFromRentcast:
     def test_no_basement_when_slab(self):
         data = {**SAMPLE_PROPERTY, "features": {
             "foundationType": "Slab", "garage": False, "fireplace": False,
+        }}
+        prop = parse_from_rentcast(data, "1", "")
+        assert prop.has_basement is False
+
+    def test_garage_from_spaces_when_no_flag(self):
+        """garageSpaces > 0 implies garage even without explicit flag."""
+        data = {**SAMPLE_PROPERTY, "features": {"garageSpaces": 2}}
+        prop = parse_from_rentcast(data, "1", "")
+        assert prop.has_garage is True
+
+    def test_garage_none_when_no_signal(self):
+        """No garage flag or spaces → None (unknown)."""
+        data = {**SAMPLE_PROPERTY, "features": {"foundationType": "Slab"}}
+        prop = parse_from_rentcast(data, "1", "")
+        assert prop.has_garage is None
+
+    def test_fireplace_none_when_missing(self):
+        """No fireplace key at all → None."""
+        data = {**SAMPLE_PROPERTY, "features": {"garage": True}}
+        prop = parse_from_rentcast(data, "1", "")
+        assert prop.has_fireplace is None
+
+    def test_basement_none_when_no_foundation(self):
+        """No foundation info → None (unknown)."""
+        data = {**SAMPLE_PROPERTY, "features": {"garage": True, "fireplace": False}}
+        prop = parse_from_rentcast(data, "1", "")
+        assert prop.has_basement is None
+
+    def test_basement_false_for_crawl_space(self):
+        data = {**SAMPLE_PROPERTY, "features": {
+            "foundationType": "Crawl Space", "garage": False, "fireplace": False,
         }}
         prop = parse_from_rentcast(data, "1", "")
         assert prop.has_basement is False

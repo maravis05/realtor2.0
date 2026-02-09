@@ -19,9 +19,9 @@ class Property:
     lot_size_acres: float = 0.0
     year_built: int = 0
     hoa_monthly: int = 0
-    has_garage: bool = False
-    has_basement: bool = False
-    has_fireplace: bool = False
+    has_garage: bool | None = None
+    has_basement: bool | None = None
+    has_fireplace: bool | None = None
     days_on_zillow: int = 0
     property_type: str = ""
     listing_url: str = ""
@@ -106,6 +106,31 @@ def parse_from_rentcast(
     features = data.get("features", {}) or {}
     foundation = str(features.get("foundationType", "") or "").lower()
 
+    # Three-valued garage: explicit flag > garageSpaces > None
+    garage_flag = features.get("garage")
+    if garage_flag is True or garage_flag is False:
+        has_garage = garage_flag
+    elif _safe_int(features.get("garageSpaces")) > 0:
+        has_garage = True
+    else:
+        has_garage = None
+
+    # Three-valued basement: foundation string > None
+    NON_BASEMENT = {"slab", "crawl space", "crawl", "pier", "pillar", "post"}
+    if "basement" in foundation:
+        has_basement = True
+    elif foundation and any(nb in foundation for nb in NON_BASEMENT):
+        has_basement = False
+    else:
+        has_basement = None
+
+    # Three-valued fireplace: explicit flag > None
+    fireplace_flag = features.get("fireplace")
+    if fireplace_flag is True or fireplace_flag is False:
+        has_fireplace = fireplace_flag
+    else:
+        has_fireplace = None
+
     return Property(
         zpid=zpid,
         address=str(_dig(data, "formattedAddress") or ""),
@@ -116,9 +141,9 @@ def parse_from_rentcast(
         lot_size_acres=lot_acres,
         year_built=_safe_int(_dig(data, "yearBuilt")),
         hoa_monthly=_safe_int(_dig(data, "hoa", "fee")),
-        has_garage=bool(features.get("garage")),
-        has_basement="basement" in foundation,
-        has_fireplace=bool(features.get("fireplace")),
+        has_garage=has_garage,
+        has_basement=has_basement,
+        has_fireplace=has_fireplace,
         property_type=str(_dig(data, "propertyType") or ""),
         listing_url=listing_url,
         # Additional API fields

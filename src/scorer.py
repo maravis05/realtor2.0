@@ -149,7 +149,7 @@ def score_property(
 
     for name, cfg in bonuses.items():
         points = float(cfg["points"])
-        if bonus_mapping.get(name, False):
+        if bonus_mapping.get(name) is True:
             bonus_scores[name] = points
             bonus_total += points
         else:
