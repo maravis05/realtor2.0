@@ -68,7 +68,7 @@ realtor2.0/
 │   ├── parser.py            RentCast JSON -> Property dataclass
 │   ├── scorer.py            Weighted scoring engine
 │   └── sheets.py            Google Sheets two-tab database
-├── tests/                   82 test cases
+├── tests/                   94 test cases
 ├── config/
 │   ├── config.yaml.example  Configuration template
 │   ├── scoring.yaml         Scoring matrix (edit this!)
@@ -195,17 +195,19 @@ The scorer reads criteria dynamically from the config. To add a new criterion:
 
 ### Listings Tab
 
-Append-only raw data. Every property ever processed is stored here with 32 columns of data (address, price, beds, baths, sqft, lot, features, taxes, commute times, etc.). This tab is never modified after a row is written.
+Append-only raw data. Every property ever processed is stored here with 33 columns of data (address, price, beds, baths, sqft, lot, features, taxes, commute times, etc.). This tab is never modified after a row is written.
+
+The **Status** column (column C) lets you control which listings appear in scoring. Set it to **Ignore** for any listing you want excluded from the Scores tab (e.g., unfinished homes, bad neighborhoods). Ignored listings stay in the Listings tab for record-keeping but are filtered out during scoring.
 
 ### Scores Tab
 
-Rebuilt from scratch every run. Sorted by value ratio descending with color-coding:
+Rebuilt from scratch every run. Sorted by value ratio descending with relative color-coding:
 
-| Score | Color |
-|-------|-------|
-| >= 75 | Green |
-| >= 50 | Yellow |
-| < 50 | No highlight |
+| Ranking | Color |
+|---------|-------|
+| Top third | Green |
+| Middle third | Yellow |
+| Bottom third | No highlight |
 
 Columns adapt dynamically based on your configured commute destinations.
 
@@ -215,7 +217,7 @@ Columns adapt dynamically based on your configured commute destinations.
 python -m pytest tests/ -v
 ```
 
-82 test cases covering email parsing, property parsing, all three scoring modes, commute lookups, value ratio calculation, and API error handling.
+94 test cases covering email parsing (liked-homes, new-listing, and open-house email formats), property parsing, all three scoring modes, commute lookups, value ratio calculation, and API error handling.
 
 ## Example Log Output
 
@@ -223,6 +225,8 @@ python -m pytest tests/ -v
 07:00:01 [INFO] === Pipeline run a3f8c21e starting ===
 07:00:02 [INFO] Commute lookups enabled: Work, School
 07:00:02 [INFO] Listings tab has 42 existing ZPIDs
+07:00:03 [INFO] Processing email: New Listing: 100 Example Rd, Anytown, NH. Your search
+07:00:04 [INFO] Processing email: Open House: 50 Sample St, Somewhere, NH
 07:00:04 [INFO] Extracted 6 unique listing(s) from emails
 07:00:04 [INFO] Skipped 3 listing(s) already in sheet
 07:00:04 [INFO] 3 new listing(s) to look up (3 API call(s))
@@ -231,12 +235,14 @@ python -m pytest tests/ -v
 07:00:06 [INFO] [1/3]  100 Example Rd, Anytown, NH 03000 | $375,000 | 3bd/2.0br | 1,850 sqft | 1.5 acres
 07:00:06 [INFO] [1/3]  Stored in Listings
 ...
-07:00:12 [INFO] Scores tab rebuilt with 45 listings
+07:00:12 [INFO] Skipped 2 ignored listing(s)
+07:00:12 [INFO] Read 43 active listings from Listings tab
+07:00:12 [INFO] Scores tab rebuilt with 43 listings
 07:00:12 [INFO] Top value ratios:
 07:00:12 [INFO]   ratio=25.30  score=63.2  50 Sample St, Somewhere, NH  $250,000
 07:00:12 [INFO]   ratio=22.10  score=82.5  100 Example Rd, Anytown, NH  $375,000
 07:00:12 [INFO]   ratio=19.80  score=68.9  200 Demo Ln, Otherville, NH  $348,000
-07:00:12 [INFO] Run a3f8c21e summary -- New: 6 | Added: 3 | Dup: 3 | Failed: 0 | Total: 45
+07:00:12 [INFO] Run a3f8c21e summary -- New: 6 | Added: 3 | Dup: 3 | Failed: 0 | Total: 43
 07:00:12 [INFO] === Pipeline run a3f8c21e finished in 11.4s ===
 ```
 
