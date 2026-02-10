@@ -44,6 +44,7 @@ class Property:
     property_tax: int = 0  # most recent year
     tax_assessment: int = 0  # most recent year
     commute_minutes: dict[str, int] = field(default_factory=dict)  # {"Work": 32, "Family": 28}
+    status: str = ""  # user-editable in Sheet: "Ignore" to exclude from scoring
 
 
 def _dig(data: dict, *keys: str, default: Any = None) -> Any:

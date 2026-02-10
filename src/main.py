@@ -232,7 +232,11 @@ def _run_pipeline(config: dict, logger: logging.Logger, run_id: str) -> None:
     # --- 4. Re-score ALL listings and rebuild Scores tab ---
     logger.info("Re-scoring all listings with current scoring matrix")
     all_properties = sheets.read_all_listings()
-    logger.info("Read %d listings from Listings tab", len(all_properties))
+    ignored = [p for p in all_properties if p.status.lower() == "ignore"]
+    all_properties = [p for p in all_properties if p.status.lower() != "ignore"]
+    if ignored:
+        logger.info("Skipped %d ignored listing(s)", len(ignored))
+    logger.info("Read %d active listings from Listings tab", len(all_properties))
 
     # Backfill commute data for existing listings missing it
     if destinations:

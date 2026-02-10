@@ -18,6 +18,12 @@ ZILLOW_URL_PATTERN = re.compile(
     re.IGNORECASE,
 )
 
+# "New Listing:" emails use a different URL format with zpid_target instead of homedetails
+ZPID_TARGET_PATTERN = re.compile(
+    r"zpid_target(?:/|%2F)(\d+)_zpid",
+    re.IGNORECASE,
+)
+
 
 @dataclass
 class ListingLink:
@@ -34,29 +40,50 @@ def connect(email_addr: str, app_password: str) -> imaplib.IMAP4_SSL:
     return imap
 
 
-def _extract_listing_data_from_html(html: str) -> list[ListingLink]:
+def _extract_listing_data_from_html(html: str, subject: str = "") -> list[ListingLink]:
     """Extract listing data (URL, ZPID, address) from Zillow alert email HTML.
 
-    Zillow alert emails contain listing blocks in <table class="mw502"> elements.
-    Each block has a homedetails link (with ZPID) and address text.
+    Handles multiple Zillow email formats:
+    - "Liked homes" digests use mw502 tables with homedetails URLs
+    - "New Listing:" alerts use mw504 tables with zpid_target URLs
+    - "Open House" alerts use mw502 for the primary + mw504 for similar homes
+
+    Recommendations / "similar homes" sections are excluded.
     """
-    soup = BeautifulSoup(html, "lxml")
+    # Strip recommendation sections so we only parse primary listings
+    parse_html = html
+    for marker in ["Our recommendations for you", "Check out these similar homes"]:
+        idx = html.find(marker)
+        if idx != -1:
+            parse_html = html[:idx]
+            logger.debug("Truncated email HTML at %r", marker)
+            break
+
+    soup = BeautifulSoup(parse_html, "lxml")
     links: list[ListingLink] = []
     seen_zpids: set[str] = set()
 
     # Strategy 1: Parse structured listing blocks from Zillow alert emails.
-    # Each listing is in a table with class "mw502" containing a link and address.
-    for table in soup.find_all("table", class_="mw502"):
+    # Liked-homes/open-house emails use "mw502", new-listing emails use "mw504".
+    for table in soup.find_all("table", class_=re.compile(r"mw50[24]")):
         # Find the ZPID. Zillow wraps <a> hrefs in click-tracking redirects
         # (click.mail.zillow.com), so the real URLs only appear in VML markup
         # that BeautifulSoup can't parse as tags. Search the raw HTML instead.
         zpid = None
         url = None
         block_html = str(table)
+
+        # Try homedetails URL first (liked-homes/open-house emails)
         match = ZILLOW_URL_PATTERN.search(block_html)
         if match:
             zpid = match.group(1)
             url = match.group(0).rstrip("/") + "/"
+        else:
+            # Fall back to zpid_target URL (new-listing emails)
+            match = ZPID_TARGET_PATTERN.search(block_html)
+            if match:
+                zpid = match.group(1)
+                url = f"https://www.zillow.com/homedetails/{zpid}_zpid/"
 
         if not zpid or not url or zpid in seen_zpids:
             continue
@@ -210,13 +237,15 @@ def fetch_new_listing_urls(
 
         raw_email = msg_data[0][1]
         msg = email.message_from_bytes(raw_email)
+        subject = msg.get("Subject", "(no subject)")
+        logger.info("Processing email: %s", subject)
         html_body = _get_html_body(msg)
 
         if not html_body:
             logger.debug("No HTML body in email %s", msg_id)
             continue
 
-        links = _extract_listing_data_from_html(html_body)
+        links = _extract_listing_data_from_html(html_body, subject=subject)
         for link in links:
             if link.zpid not in seen_zpids:
                 seen_zpids.add(link.zpid)

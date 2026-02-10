@@ -28,6 +28,7 @@ SCOPES = [
 LISTINGS_HEADERS = [
     "Link",
     "Date Added",
+    "Status",
     "ZPID",
     "Town",
     "Address",
@@ -174,6 +175,7 @@ class SheetsClient:
         row = [
             prop.listing_url,
             date.today().isoformat(),
+            "",  # Status — user-editable
             prop.zpid,
             prop.town,
             prop.address,
@@ -213,7 +215,7 @@ class SheetsClient:
 
     def read_all_listings(self) -> list[Property]:
         """Read all properties back from the Listings tab."""
-        rows = self.listings_ws.get_all_records()
+        rows = self.listings_ws.get_all_records(value_render_option="UNFORMATTED_VALUE")
         properties: list[Property] = []
 
         for row in rows:
@@ -261,6 +263,7 @@ class SheetsClient:
                     property_tax=int(row.get("Property Tax", 0) or 0),
                     tax_assessment=int(row.get("Tax Assessment", 0) or 0),
                     commute_minutes=commute_minutes,
+                    status=str(row.get("Status", "")),
                 ))
             except (ValueError, TypeError) as e:
                 logger.warning("Skipping malformed Listings row (ZPID %s): %s", row.get("ZPID"), e)
@@ -339,19 +342,24 @@ class SheetsClient:
         scored: list[tuple[Property, ScoreBreakdown]],
         num_cols: int,
     ) -> None:
-        """Batch color-code rows on the Scores tab based on final_score."""
+        """Batch color-code rows on the Scores tab by relative ranking (thirds)."""
         last_col = _col_letter(num_cols)
+        n = len(scored)
+        if n == 0:
+            return
+        top_cutoff = n // 3 or 1  # at least 1 row in top tier
+        mid_cutoff = 2 * n // 3 or top_cutoff + 1
         try:
             formats = []
-            for i, (_, breakdown) in enumerate(scored):
+            for i in range(n):
                 row_num = i + 2  # 1-indexed, skip header
-                if breakdown.final_score >= 75:
+                if i < top_cutoff:
                     bg = {"red": 0.85, "green": 0.95, "blue": 0.85}
-                elif breakdown.final_score >= 50:
+                elif i < mid_cutoff:
                     bg = {"red": 1.0, "green": 0.97, "blue": 0.8}
                 else:
                     continue
-                formats.append((f"A{row_num}:{last_col}{row_num}", {"backgroundColor": bg}))
+                formats.append({"range": f"A{row_num}:{last_col}{row_num}", "format": {"backgroundColor": bg}})
 
             if formats:
                 ws.batch_format(formats)
@@ -378,8 +386,8 @@ class SheetsClient:
         tax_col = _col_letter(LISTINGS_HEADERS.index("Property Tax") + 1)
         try:
             ws.batch_format([
-                (f"{price_col}2:{price_col}1000", currency_fmt),
-                (f"{tax_col}2:{tax_col}1000", currency_fmt),
+                {"range": f"{price_col}2:{price_col}1000", "format": currency_fmt},
+                {"range": f"{tax_col}2:{tax_col}1000", "format": currency_fmt},
             ])
         except Exception as e:
             logger.debug("Could not apply currency format: %s", e)

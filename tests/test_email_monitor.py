@@ -123,6 +123,43 @@ class TestSyntheticEmail:
         assert len(zpids) == len(set(zpids))
 
 
+def _load_new_listing_email() -> str:
+    return (FIXTURES / "zillow_new_listing_email.html").read_text()
+
+
+class TestNewListingEmail:
+    """Tests against a saved real Zillow 'New Listing:' alert email."""
+
+    def test_extracts_only_primary_listing(self):
+        links = _extract_listing_data_from_html(_load_new_listing_email())
+        assert len(links) == 1
+
+    def test_primary_zpid(self):
+        links = _extract_listing_data_from_html(_load_new_listing_email())
+        assert links[0].zpid == "113449928"
+
+    def test_primary_address(self):
+        links = _extract_listing_data_from_html(_load_new_listing_email())
+        assert "13 Birchdale Road" in links[0].address
+        assert "Bow" in links[0].address
+
+    def test_primary_price(self):
+        links = _extract_listing_data_from_html(_load_new_listing_email())
+        assert links[0].price == 479000
+
+    def test_canonical_url(self):
+        links = _extract_listing_data_from_html(_load_new_listing_email())
+        assert links[0].url == "https://www.zillow.com/homedetails/113449928_zpid/"
+
+    def test_excludes_recommendations(self):
+        """The email has 6 'recommended' listings that should NOT be extracted."""
+        links = _extract_listing_data_from_html(_load_new_listing_email())
+        zpids = {l.zpid for l in links}
+        # These are recommendation ZPIDs that should be excluded
+        assert "117800723" not in zpids
+        assert "124632182" not in zpids
+
+
 class TestAddressFromUrl:
     def test_extracts_address_slug(self):
         url = "https://www.zillow.com/homedetails/408-Manchester-Rd-Auburn-NH-03032/87654321_zpid/"
