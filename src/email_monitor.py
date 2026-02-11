@@ -52,7 +52,7 @@ def _extract_listing_data_from_html(html: str, subject: str = "") -> list[Listin
     """
     # Strip recommendation sections so we only parse primary listings
     parse_html = html
-    for marker in ["Our recommendations for you", "Check out these similar homes"]:
+    for marker in ["Our recommendations", "Check out these similar homes"]:
         idx = html.find(marker)
         if idx != -1:
             parse_html = html[:idx]

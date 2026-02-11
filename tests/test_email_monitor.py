@@ -160,6 +160,40 @@ class TestNewListingEmail:
         assert "124632182" not in zpids
 
 
+def _load_search_result_email() -> str:
+    return (FIXTURES / "zillow_search_result_email.html").read_text()
+
+
+class TestSearchResultEmail:
+    """Tests against a saved real Zillow 'N Results for' search alert email."""
+
+    def test_extracts_only_primary_listing(self):
+        links = _extract_listing_data_from_html(_load_search_result_email())
+        assert len(links) == 1
+
+    def test_primary_zpid(self):
+        links = _extract_listing_data_from_html(_load_search_result_email())
+        assert links[0].zpid == "120666053"
+
+    def test_primary_address(self):
+        links = _extract_listing_data_from_html(_load_search_result_email())
+        assert "Molly Stark" in links[0].address
+        assert "New Boston" in links[0].address
+
+    def test_primary_price(self):
+        links = _extract_listing_data_from_html(_load_search_result_email())
+        assert links[0].price == 460000
+
+    def test_excludes_recommendations(self):
+        """The email has 3 recommended listings that should NOT be extracted."""
+        links = _extract_listing_data_from_html(_load_search_result_email())
+        zpids = {l.zpid for l in links}
+        # These are recommendation ZPIDs that should be excluded
+        assert "2090198051" not in zpids  # 2 Larch St condo
+        assert "74282506" not in zpids
+        assert "74321529" not in zpids
+
+
 class TestAddressFromUrl:
     def test_extracts_address_slug(self):
         url = "https://www.zillow.com/homedetails/408-Manchester-Rd-Auburn-NH-03032/87654321_zpid/"
