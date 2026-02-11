@@ -251,9 +251,16 @@ def _run_pipeline(config: dict, logger: logging.Logger, run_id: str) -> None:
         if backfilled:
             logger.info("Backfilled commute data for %d listing(s)", backfilled)
 
+    NEEDS_WORK_PENALTY = -40
+
     scored: list[tuple[Property, ScoreBreakdown]] = []
     for prop in all_properties:
         breakdown = score_property(prop, config=scoring_config)
+        if prop.status.lower() == "needs work":
+            breakdown.penalty = NEEDS_WORK_PENALTY
+            breakdown.final_score = max(0.0, round(breakdown.final_score + NEEDS_WORK_PENALTY, 1))
+            if prop.price > 0:
+                breakdown.value_ratio = round(breakdown.final_score / (prop.price / 100_000), 2)
         scored.append((prop, breakdown))
 
     scored.sort(key=lambda x: x[1].value_ratio, reverse=True)

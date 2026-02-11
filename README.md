@@ -197,7 +197,13 @@ The scorer reads criteria dynamically from the config. To add a new criterion:
 
 Append-only raw data. Every property ever processed is stored here with 33 columns of data (address, price, beds, baths, sqft, lot, features, taxes, commute times, etc.). This tab is never modified after a row is written.
 
-The **Status** column (column C) lets you control which listings appear in scoring. Set it to **Ignore** for any listing you want excluded from the Scores tab (e.g., unfinished homes, bad neighborhoods). Ignored listings stay in the Listings tab for record-keeping but are filtered out during scoring.
+The **Status** column (column C) lets you control how listings are scored:
+
+| Status | Effect |
+|--------|--------|
+| *(blank)* | Normal scoring |
+| **Needs Work** | -40 point penalty (fixer-uppers, financing risk) |
+| **Ignore** | Excluded from Scores tab entirely |
 
 ### Scores Tab
 

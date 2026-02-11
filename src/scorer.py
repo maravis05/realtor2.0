@@ -19,7 +19,7 @@ class ScoreBreakdown:
     bonus_total: float
     final_score: float
     value_ratio: float = 0.0
-
+    penalty: float = 0.0  # flat deduction (e.g. "Needs Work" status)
 
     def summary(self) -> str:
         parts = []
@@ -28,6 +28,8 @@ class ScoreBreakdown:
         for name, val in self.bonus_scores.items():
             if val > 0:
                 parts.append(f"+{name}={val:.0f}")
+        if self.penalty:
+            parts.append(f"penalty={self.penalty:+.0f}")
         return " | ".join(parts)
 
 
